@@ -11,7 +11,7 @@
         <nav id="index-nav">
             <form action="" method="get">
                 <select name="idioma" id="idioma">
-                    <option value="cat">🏳️‍🌈 Català</option>
+                    <option value="cat">🏴󠁥󠁳󠁣󠁴󠁿 Català</option>
                     <option value="esp">🇪🇸 Español</option>
                     <option value="eng">🇺🇸 English</option>
                 </select>
