@@ -1,0 +1,80 @@
+/*index.php*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+
+body {
+    margin: 0px;
+    scroll-snap-type: y mandatory;
+}
+
+#index-nav {
+    padding: 10px 0;
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    height: 1vw;
+    /*border-bottom: 1px solid black;*/
+}
+
+#index-nav > form {
+    padding: 0 20px;
+}
+
+header {
+    font-family: 'Inter', sans-serif;
+    background-color: #b8c1ec;
+    height: 100vh;
+}
+
+#header-title {
+    margin: 16vh auto;
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#header-title > h1 {
+    font-size: 7vw;
+    color: #121629;
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+#header-title > a {
+    color: #121629;
+    width: fit-content;
+    padding: 10px 20px;
+    border: 3px solid #121629;
+    background-color: #eebbc3;
+    text-decoration: none;
+    border-radius: 15px;
+    font-size:xx-large;
+    transition: background-color .3s linear;
+}
+
+#header-title > a:hover {
+    background-color: #e69aa6;
+    transition: background-color .3s linear;
+}
+
+#header-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 18vh auto;
+    color: #121629;
+}
+
+#header-scroll > svg {
+    /*animation: name duration timing-function delay iteration-count direction fill-mode;*/
+    animation-name: arrow-movement;
+    animation-duration: .5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes arrow-movement {
+    from {margin-top: 0px;}
+    to {margin-top: 10px;}
+}
