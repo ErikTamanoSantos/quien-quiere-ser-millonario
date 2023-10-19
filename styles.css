@@ -14,6 +14,7 @@ body {
     margin: 0px;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
+    scroll-behavior: smooth!important;  /*! me ignora por completo */
 }
 
 #index-nav {
@@ -29,9 +30,9 @@ body {
 }
 
 header {
-    font-family: 'Inter', sans-serif;
     background-color: var(--azul);
     height: 100vh;
+    scroll-snap-align: start;
 }
 
 #header-title {
@@ -76,7 +77,6 @@ header {
 }
 
 #header-scroll > svg {
-    /*animation: name duration timing-function delay iteration-count direction fill-mode;*/
     animation-name: arrow-movement;
     animation-duration: .5s;
     animation-iteration-count: infinite;
@@ -86,4 +86,58 @@ header {
 @keyframes arrow-movement {
     from {margin-top: 0px;}
     to {margin-top: 10px;}
+}
+
+main.main-slider {
+    scroll-snap-type: y mandatory;
+    font-family: 'Inter', sans-serif;
+}
+
+.how-to-play {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+    background-color: var(--rosita);
+}
+
+
+section.how-to-play > h1 {
+    font-size: 3vw;
+    color: var(--gris-oscuro);
+    margin: 0;
+    margin-bottom: 40px;
+    margin-top: 0;
+}
+
+.primera-instruccion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.how-to-play p { text-align: center; }
+
+.how-to-play img {
+    margin-top: 40px;
+    width: 700px;
+    height: 300px;
+}
+
+.how-to-play a {
+    background-color: var(--azul-claro);
+    text-decoration: none;
+    color: var(--gris-oscuro);
+    padding: 15px 25px;
+    border-radius: 15px;
+    border: 3px solid var(--gris-oscuro);
+    transition: background-color .3s;
+}
+
+.how-to-play a:hover {
+    background-color: var(--azul);
+    transition: background-color .3s;
 }
