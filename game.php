@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src='game_controller.js'></script>
     <title>Document</title>
 </head>
 <body>
+    <main class="main-slider">
     <?php 
         $file = fopen("preguntes/catalan_1.txt", "r");
         $question_prefix = "* ";
@@ -74,8 +76,10 @@
 
         function print_page_from_data($questions_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix) {
             $question = key($questions_array[$selected_indexes[0]]);
-            echo "<div id='question-0' class='question-container'>";
+            echo "<div id='question-0' class='question-container slider' question-number='0'>";
+            echo "<div class='question-header'>";
             echo "<h1>".remove_prefix($question, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix)."</h1>";
+            echo "</div>";
             echo "<div class='answer-container'>";
             for ($i = 0; $i < count($questions_array[$selected_indexes[0]][$question]); $i++) {
                 $answer = $questions_array[$selected_indexes[0]][$question][$i];
@@ -90,8 +94,10 @@
 
             for ($i = 1; $i < count($selected_indexes); $i++) {
                 $question = key($questions_array[$selected_indexes[$i]]);
-                echo "<div id='question-$i' class='question-container hidden-question'>";
+                echo "<div id='question-$i' class='question-container hidden-question slider' question-number='$i'>";
+                echo "<div class='question-header'>";
                 echo "<h1>".remove_prefix($question, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix)."</h1>";
+                echo "</div>";
                 echo "<div class='answer-container'>";
                 for ($j = 0; $j < count($questions_array[$selected_indexes[$i]][$question]); $j++) {
                     $answer = $questions_array[$selected_indexes[$i]][$question][$j];
@@ -106,5 +112,6 @@
             }
         }
     ?>
+    </main>
 </body>
 </html>
