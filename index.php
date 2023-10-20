@@ -8,7 +8,7 @@
 </head>
 <body>
     <main class="main-slider">
-        <header id="index-header">
+        <section id="index-header" class="slider">
             <nav id="index-nav">
                 <form action="" method="get">
                     <select name="idioma" id="idioma">
@@ -31,24 +31,24 @@
                     <path d="M10 2l-.15 .005a2 2 0 0 0 -1.85 1.995v6.999l-2.586 .001a2 2 0 0 0 -1.414 3.414l6.586 6.586a2 2 0 0 0 2.828 0l6.586 -6.586a2 2 0 0 0 .434 -2.18l-.068 -.145a2 2 0 0 0 -1.78 -1.089l-2.586 -.001v-6.999a2 2 0 0 0 -2 -2h-4z" stroke-width="0" fill="currentColor"></path>
                 </svg>
             </section>
-        </header>
+        </section>
         
-        <section class="how-to-play">
+        <section class="how-to-play slider">
             <h1>Com jugar al "Qui vol ser milionari"?</h1>
             <div class="primera-instruccion">
                 <p>En aquest joc hauràs d'afrontar-te a un total de 18 preguntes de cultura general. <br>
-                   Et farem una pregunta i tindràs 4 posibles respostes. Si falles, hauràs de tornar a començar, si l'encertes, <br>
-                   hauràs de contestar una altra pregunta.</p>
+                    Et farem una pregunta i tindràs 4 posibles respostes. Si falles, hauràs de tornar a començar, si l'encertes, <br>
+                    hauràs de contestar una altra pregunta.</p>
                 <img src="imgs/placeholder-instrucciones.png" alt="Imagen de ejemplo estructura preguntas y respuestas">
             </div>
         </section>
 
-        <section class="how-to-play">
+        <section class="how-to-play slider">
             <h1>Dificultat progresiva</h1>
             <div class="primera-instruccion">
                 <p>Cada 3 preguntes que aconsegueixis respondre, la dificultat augmentarà. <br>
-                   La dificultat continuarà progresant fins arribar a les 18 preguntes encertades. Llavors, hauràs guanyat el joc! <br><br>
-                   Vols probar?</p>
+                    La dificultat continuarà progresant fins arribar a les 18 preguntes encertades. Llavors, hauràs guanyat el joc! <br><br>
+                    Vols probar?</p>
                 <a href="#index-header">Torna adalt i proba-hi!</a>
             </div>
         </section>

@@ -12,9 +12,6 @@
 
 body {
     margin: 0px;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth!important;  /*! me ignora por completo */
 }
 
 #index-nav {
@@ -29,10 +26,10 @@ body {
     padding: 0 20px;
 }
 
-header {
+#index-header {
     background-color: var(--azul);
+    width: 100%;
     height: 100vh;
-    scroll-snap-align: start;
 }
 
 #header-title {
@@ -43,6 +40,12 @@ header {
     align-items: center;
     text-align: center;
 }
+
+/*
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+*/
 
 #header-title > h1 {
     font-size: 7vw;
@@ -59,7 +62,7 @@ header {
     background-color: var(--rosita);
     text-decoration: none;
     border-radius: 15px;
-    font-size:xx-large;
+    font-size: xx-large;
     transition: background-color .3s linear;
 }
 
@@ -88,18 +91,13 @@ header {
     to {margin-top: 10px;}
 }
 
-main.main-slider {
-    scroll-snap-type: y mandatory;
-    font-family: 'Inter', sans-serif;
-}
-
 .how-to-play {
+    width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    scroll-snap-align: start;
     background-color: var(--rosita);
 }
 
@@ -140,4 +138,16 @@ section.how-to-play > h1 {
 .how-to-play a:hover {
     background-color: var(--azul);
     transition: background-color .3s;
+}
+
+.main-slider {
+    position: relative;
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
+}
+
+.slider {
+    scroll-snap-align: start;
 }
