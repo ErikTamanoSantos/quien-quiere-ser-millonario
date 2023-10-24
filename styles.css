@@ -254,6 +254,7 @@ section.how-to-play > h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: end;
 }
 
 .question-header {
@@ -290,6 +291,8 @@ section.how-to-play > h1 {
     border: solid 4px var(--gris-oscuro);
     font-family: 'Inter', sans-serif;
     font-size: 22px;
+    transition: background-color .3s linear;
+    cursor: pointer;
 }
 
 .answer-container button:hover {
@@ -326,4 +329,42 @@ section.how-to-play > h1 {
 
 .wrong-button.clicked:hover {
     background-color: var(--rojo);
+}
+
+.message-container {
+    width: 100%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message-wrong, .message-correct {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message-correct svg {
+    animation-name: arrow-movement;
+    animation-duration: .5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.message-wrong a {
+    color: var(--gris-oscuro);
+    width: fit-content;
+    padding: 10px 20px;
+    border: 3px solid var(--gris-oscuro);
+    background-color: var(--rosita);
+    text-decoration: none;
+    border-radius: 15px;
+    font-size: large;
+    transition: background-color .3s linear;
+}
+
+.message-wrong a:hover {
+    background-color: var(--rosita-hover);
+    transition: background-color .3s linear;
 }
