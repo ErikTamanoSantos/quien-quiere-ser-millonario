@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qui vol ser milionari?</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <?php
@@ -55,7 +55,9 @@
                     Vols probar?</p>
                 <a href="#index-header">Torna adalt i proba-hi!</a>
             </div>
+            <button id="ring-button">ringring</button>
         </section>
     </main>
+    <script src="help_controller.js"></script>
 </body>
 </html>
