@@ -304,8 +304,11 @@ section.how-to-play > h1 {
 .answer-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    padding: 10px;
     width: 100%;
+}
+
+.arrow-container {
+    height: 40px;
 }
 
 .answer-container button {
