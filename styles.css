@@ -95,8 +95,8 @@ h3 { font-family: 'Inter', sans-serif; }
 }
 
 @keyframes arrow-movement {
-    from {margin-top: 0px;}
-    to {margin-top: 10px;}
+    from {margin-top: 5px;}
+    to {margin-top: 15px;}
 }
 
 .how-to-play {
@@ -241,7 +241,32 @@ section.how-to-play > h1 {
     height: 100vh;
 }
 
+#bad-win {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--rojo);
+    height: 35vh;
+    padding: 30px;
+}
 
+#tornar { padding: 35px; }
+
+#tornar > a {
+    background-color: var(--azul);
+    color: #121629;
+    font-family: 'Inter', sans-serif;
+    padding: 20px 15px;
+    border-radius: 15px;
+    text-decoration: none;
+}
+
+#tornar > span {
+    
+}
+
+/* game.php */
 
 .hidden-question {
     display: none !important

@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <?php
+        session_destroy();
+    ?>
     <main class="main-slider">
         <section id="index-header" class="slider">
             <nav id="index-nav">
