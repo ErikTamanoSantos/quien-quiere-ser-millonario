@@ -11,19 +11,28 @@ function init() {
 }
 
 function click_correct_answer() {
-    console.log(this)
     let question_number = get_question_number(this)
-    console.log(question_number)
-    show_question(question_number+1)
-    this.classList.add("clicked")
-    let answer_div = get_answer_div(this)
-    disable_buttons(answer_div);
+    if (question_number < 2) {
+        show_question(question_number+1)
+        this.classList.add("clicked")
+        let answer_div = get_answer_div(this)
+        let msg = get_correct_message_div(this);
+        msg.classList.remove("d-none")
+        disable_buttons(answer_div);
+    } else {
+        this.classList.add("clicked")
+        let answer_div = get_answer_div(this)
+        disable_buttons(answer_div);
+        document.getElementById("next-level-container").classList.remove("d-none")
+    }
 }
 
 function click_wrong_answer() {
     let question_number = get_question_number(this)
     this.classList.add("clicked")
     let answer_div = get_answer_div(this)
+    let msg = get_wrong_message_div(this);
+    msg.classList.remove("d-none");
     disable_buttons(answer_div);
 }
 
@@ -33,6 +42,14 @@ function get_question_number(html_element) {
 
 function get_answer_div(html_element) {
     return html_element.parentNode
+}
+
+function get_correct_message_div(button) {
+    return button.parentNode.parentNode.querySelectorAll(":scope .message-correct")[0]
+}
+
+function get_wrong_message_div(button) {
+    return button.parentNode.parentNode.querySelectorAll(":scope .message-wrong")[0]
 }
 
 function show_question(question_number) {

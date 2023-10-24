@@ -3,26 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <script src='game_controller.js'></script>
     <title>Document</title>
 </head>
 <body>
     <main>
     <?php 
-        $file = fopen("preguntes/catalan_1.txt", "r");
+        session_start();
+        if (!isset($_SESSION['cur_level'])) {
+            $_SESSION['cur_level'] = 1;
+        } elseif (isset($_POST['cur_level'])) {
+            $_SESSION['cur_level'] = $_POST['cur_level'];
+        }
+        $file = fopen("preguntes/catalan_".$_SESSION['cur_level'].".txt", "r");
         $question_prefix = "* ";
         $correct_answer_prefix = "+ ";
         $wrong_answer_prefix = "- ";
         $questions_array = [];
 
         $questions_amount = 3;
+        $max_level = 6;
         $selected_indexes = [];
 
         $questions_array = get_questions_from_file($file, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix);
         $selected_indexes = get_array_of_random_numbers($questions_amount, 0, count($questions_array)-1);
 
-        print_page_from_data($questions_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix);
+        print_page_from_data($questions_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix, $max_level);
 
         
         function get_questions_from_file($file, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix) {
@@ -74,7 +81,7 @@
             }
         }
 
-        function print_page_from_data($questions_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix) {
+        function print_page_from_data($questions_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix, $max_level) {
             $question = key($questions_array[$selected_indexes[0]]);
             echo "<div id='question-0' class='question-container' question-number='0'>\n";
             echo "<div class='question-header'>\n";
@@ -90,20 +97,21 @@
                 }
             }
             echo "</div>\n";
-            echo "<div class='message-container'>";
-            echo "<div class='message-correct'>";
-            echo "<h2>Correcte!</h2>";
-            echo "<div class='arrow-container'>";
+            echo "<div class='message-container'>\n";
+            echo "<div class='message-correct d-none'>\n";
+            echo "<h2>Correcte!</h2>\n";
+            echo "<div class='arrow-container'>\n";
             echo '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-down-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M10 2l-.15 .005a2 2 0 0 0 -1.85 1.995v6.999l-2.586 .001a2 2 0 0 0 -1.414 3.414l6.586 6.586a2 2 0 0 0 2.828 0l6.586 -6.586a2 2 0 0 0 .434 -2.18l-.068 -.145a2 2 0 0 0 -1.78 -1.089l-2.586 -.001v-6.999a2 2 0 0 0 -2 -2h-4z" stroke-width="0" fill="currentColor"></path>
                  </svg>';
-            echo "</div>";
-            echo "</div>";
-            echo "<div class='message-wrong'>";
-            echo "<h2>Has fallat!</h2>";
-            echo "<a href='http://localhost:8080'>TORNAR A L'INICI</a>";
-            echo "</div>";
+            echo "</div>\n";
+            echo "</div>\n";
+            echo "<div class='message-wrong d-none'>\n";
+            echo "<h2>Has fallat!</h2>\n";
+            echo "<a href='http://localhost:8080'>TORNAR A L'INICI</a>\n";
+            echo "</div>\n";
+            echo "</div>\n";
             echo "</div>\n";
 
             for ($i = 1; $i < count($selected_indexes); $i++) {
@@ -122,8 +130,33 @@
                     }
                 }
                 echo "</div>\n";
+                echo "<div class='message-container'>\n";
+                echo "<div class='message-correct d-none'>\n";
+                echo "<h2>Correcte!</h2>\n";
+                echo "<div class='arrow-container'>\n";
+                echo '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-down-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M10 2l-.15 .005a2 2 0 0 0 -1.85 1.995v6.999l-2.586 .001a2 2 0 0 0 -1.414 3.414l6.586 6.586a2 2 0 0 0 2.828 0l6.586 -6.586a2 2 0 0 0 .434 -2.18l-.068 -.145a2 2 0 0 0 -1.78 -1.089l-2.586 -.001v-6.999a2 2 0 0 0 -2 -2h-4z" stroke-width="0" fill="currentColor"></path>
+                    </svg>';
+                echo "</div>\n";
+                echo "</div>\n";
+                echo "<div class='message-wrong d-none'>\n";
+                echo "<h2>Has fallat!</h2>\n";
+                echo "<a href='http://localhost:8080'>TORNAR A L'INICI</a>\n";
+                echo "</div>\n";
+                echo "</div>\n";
                 echo "</div>\n";
             }
+            if ($_SESSION['cur_level'] == $max_level) {
+                echo "<form method='POST' id='next-level-container' class='d-none' action='win.php'>";
+            } else {
+                echo "<form method='POST' id='next-level-container' class='d-none' action='game.php'>";
+            }
+            echo "<h1>Nivell Completat!</h1>";
+            echo "<input type='submit' value='Següent nivell'>";
+            $next_level = $_SESSION['cur_level']+1;
+            echo "<input type='hidden' name='cur_level' value='".$next_level."'>";
+            echo "</form>";
         }
     ?>
     </main>

@@ -4,6 +4,11 @@ h1 { font-family: 'Inter', sans-serif; }
 h3 { font-family: 'Inter', sans-serif; }
 
 
+.d-none {
+    display: none !important;
+}
+
+
 /*index.php*/
 :root {
     --rosita: #eebbc3;
@@ -393,6 +398,34 @@ section.how-to-play > h1 {
 }
 
 .message-wrong a:hover {
+    background-color: var(--rosita-hover);
+    transition: background-color .3s linear;
+}
+
+#next-level-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--gris);
+    padding-bottom: 40px;
+}
+
+#next-level-container input {
+    color: var(--gris-oscuro);
+    width: fit-content;
+    padding: 10px 20px;
+    border: 3px solid var(--gris-oscuro);
+    background-color: var(--rosita);
+    text-decoration: none;
+    border-radius: 15px;
+    font-size: large;
+    transition: background-color .3s linear;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#next-level-container input:hover {
     background-color: var(--rosita-hover);
     transition: background-color .3s linear;
 }
