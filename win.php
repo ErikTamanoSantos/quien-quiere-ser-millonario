@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Has guanyat!</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main id="main-win">
         <?php
-        $_SESSION["acertadas"] = 18;
+        // $_SESSION["acertadas"] = 18;
         if ($_SESSION["acertadas"] !== 18) {
             echo "<section id='bad-win'><h1>No t'emportaràs cap premi fent trampes!</h1>";
             echo '<span id="tornar"><a href="http://localhost:8080">Tornar a l\'inici</a><span>👈</span></span><section>';
