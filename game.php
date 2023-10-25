@@ -149,6 +149,7 @@
             }
             if ($_SESSION['cur_level'] == $max_level) {
                 echo "<form method='POST' id='next-level-container' class='d-none' action='win.php'>";
+                echo "<input type='hidden' id='game_won' name='game_won' value='1'>";
             } else {
                 echo "<form method='POST' id='next-level-container' class='d-none' action='game.php'>";
             }

@@ -256,19 +256,16 @@ section.how-to-play > h1 {
     padding: 30px;
 }
 
-#tornar { padding: 35px; }
+.tornar { padding: 35px; }
 
-#tornar > a {
+.tornar > a {
     background-color: var(--azul);
     color: #121629;
     font-family: 'Inter', sans-serif;
-    padding: 20px 15px;
+    padding: 15px 15px;
     border-radius: 15px;
     text-decoration: none;
-}
-
-#tornar > span {
-    
+    border: 3px solid var(--gris-oscuro);
 }
 
 /* game.php */
