@@ -43,7 +43,7 @@
                 <p>En aquest joc hauràs d'afrontar-te a un total de 18 preguntes de cultura general. <br>
                     Et farem una pregunta i tindràs 4 posibles respostes. Si falles, hauràs de tornar a començar, si l'encertes, <br>
                     hauràs de contestar una altra pregunta.</p>
-                <img src="imgs/placeholder-instrucciones.png" alt="Imagen de ejemplo estructura preguntas y respuestas">
+                <img src="imgs/juego-instrucciones.png" alt="Imagen de ejemplo estructura preguntas y respuestas">
             </div>
         </section>
 

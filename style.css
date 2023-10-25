@@ -170,6 +170,12 @@ section.how-to-play > h1 {
     width: 100%;
 }
 
+.primera-instruccion img {
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 16px 1px rgba(18,22,41,0.68); 
+    box-shadow: 0px 0px 16px 1px rgba(18,22,41,0.68);
+}
+
 
 /* win.php */
 @keyframes win-transition-animation {
@@ -265,10 +271,6 @@ section.how-to-play > h1 {
     padding: 20px 15px;
     border-radius: 15px;
     text-decoration: none;
-}
-
-#tornar > span {
-    
 }
 
 /* game.php */
