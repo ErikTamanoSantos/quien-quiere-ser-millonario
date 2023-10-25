@@ -10,9 +10,9 @@
     <main id="main-win">
         <?php
         // $_SESSION["acertadas"] = 18;
-        if ($_SESSION["acertadas"] !== 18) {
+        if (!isset($_POST["game_won"])) {
             echo "<section id='bad-win'><h1>No t'emportaràs cap premi fent trampes!</h1>";
-            echo '<span id="tornar"><a href="http://localhost:8080">Tornar a l\'inici</a><span>👈</span></span><section>';
+            echo '<span class="tornar"><a href="http://localhost:8080">Tornar a l\'inici</a><span>👈</span></span><section>';
         } else {
             echo '
                 <section class="win-before">
@@ -32,6 +32,7 @@
                         <path d="M3 6v10c0 .888 .772 1.45 2 2"></path>
                         <path d="M3 11c0 .888 .772 1.45 2 2"></path>
                     </svg>
+                    <span class="tornar"><a href="http://localhost:8080">Tornar a l\'inici</a></span><section>
                 </section>
             ';  
         }
