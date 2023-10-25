@@ -1,3 +1,6 @@
+const correct_audio = new Audio('audios/correct.mp3');
+const fail_audio = new Audio('audios/fail.mp3');
+
 addEventListener('load', init);
 function init() {
     let correct_buttons = document.getElementsByClassName("correct-button");
@@ -11,6 +14,7 @@ function init() {
 }
 
 function click_correct_answer() {
+    correct_audio.play();
     let question_number = get_question_number(this)
     if (question_number < 2) {
         show_question(question_number+1)
@@ -28,7 +32,7 @@ function click_correct_answer() {
 }
 
 function click_wrong_answer() {
-    let question_number = get_question_number(this)
+    fail_audio.play();
     this.classList.add("clicked")
     let answer_div = get_answer_div(this)
     let msg = get_wrong_message_div(this);

@@ -370,6 +370,7 @@ section.how-to-play > h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Inter', sans-serif;
 }
 
 .message-wrong, .message-correct {
@@ -409,6 +410,7 @@ section.how-to-play > h1 {
     align-items: center;
     background-color: var(--gris);
     padding-bottom: 40px;
+    font-family: 'Inter', sans-serif;
 }
 
 #next-level-container input {
