@@ -4,40 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qui vol ser milionari?</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav id="index-nav">
-            <form action="" method="get">
-                <select name="idioma" id="idioma">
-                    <option value="cat">🏳️‍🌈 Català</option>
-                    <option value="esp">🇪🇸 Español</option>
-                    <option value="eng">🇺🇸 English</option>
-                </select>
-    
-                <input type="submit" value="Canviar" disabled>
-            </form>
-        </nav>
-        <section id="header-title">
-            <h1>Qui vol ser<br>MILIONARI</h1>
-            <a href="game.php">JUGAR</a>
+    <?php
+        session_start();
+        session_destroy();
+    ?>
+    <main class="main-slider">
+        <section id="index-header" class="slider">
+            <nav id="index-nav">
+                <form action="" method="get">
+                    <select name="idioma" id="idioma">
+                        <option value="cat">🏴󠁥󠁳󠁣󠁴󠁿 Català</option>
+                        <option value="esp">🇪🇸 Español</option>
+                        <option value="eng">🇺🇸 English</option>
+                    </select>
+        
+                    <input type="submit" value="Canviar" disabled>
+                </form>
+            </nav>
+            <section id="header-title">
+                <h1>Qui vol ser<br>MILIONARI</h1>
+                <a href="game.php">JUGAR</a>
+            </section>
+            <section id="header-scroll">
+                <p>Fes scroll cap abaix per <br>veure les instruccions</p>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-down-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M10 2l-.15 .005a2 2 0 0 0 -1.85 1.995v6.999l-2.586 .001a2 2 0 0 0 -1.414 3.414l6.586 6.586a2 2 0 0 0 2.828 0l6.586 -6.586a2 2 0 0 0 .434 -2.18l-.068 -.145a2 2 0 0 0 -1.78 -1.089l-2.586 -.001v-6.999a2 2 0 0 0 -2 -2h-4z" stroke-width="0" fill="currentColor"></path>
+                </svg>
+            </section>
         </section>
-        <section id="header-scroll">
-            <p>Fes scroll cap abaix per <br>veure les instruccions</p>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-down-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M10 2l-.15 .005a2 2 0 0 0 -1.85 1.995v6.999l-2.586 .001a2 2 0 0 0 -1.414 3.414l6.586 6.586a2 2 0 0 0 2.828 0l6.586 -6.586a2 2 0 0 0 .434 -2.18l-.068 -.145a2 2 0 0 0 -1.78 -1.089l-2.586 -.001v-6.999a2 2 0 0 0 -2 -2h-4z" stroke-width="0" fill="currentColor"></path>
-            </svg>
+        
+        <section class="how-to-play slider">
+            <h1>Com jugar al "Qui vol ser milionari"?</h1>
+            <div class="primera-instruccion">
+                <p>En aquest joc hauràs d'afrontar-te a un total de 18 preguntes de cultura general. <br>
+                    Et farem una pregunta i tindràs 4 posibles respostes. Si falles, hauràs de tornar a començar, si l'encertes, <br>
+                    hauràs de contestar una altra pregunta.</p>
+                <img src="imgs/juego-instrucciones.png" alt="Imagen de ejemplo estructura preguntas y respuestas">
+            </div>
         </section>
-    </header>
-    
-    <section>
-        <h1>Com jugar al "Qui vol ser milionari"</h1>
-        <div>
-            <p>En aquest joc hauràs d'afrontar-te a 18 preguntes </p>
-            <img src="" alt="">
-        </div>
-    </section>
+
+        <section class="how-to-play slider">
+            <h1>Dificultat progresiva</h1>
+            <div class="primera-instruccion">
+                <p>Cada 3 preguntes que aconsegueixis respondre, la dificultat augmentarà. <br>
+                    La dificultat continuarà progresant fins arribar a les 18 preguntes encertades. Llavors, hauràs guanyat el joc! <br><br>
+                    Vols probar?</p>
+                <a href="#index-header">Torna adalt i proba-hi!</a>
+            </div>
+            <button id="ring-button">ringring</button>
+        </section>
+    </main>
+    <script src="help_controller.js"></script>
 </body>
 </html>
