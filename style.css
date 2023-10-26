@@ -135,6 +135,7 @@ section.how-to-play > h1 {
     margin-top: 40px;
     width: 700px;
     height: 300px;
+    object-fit:cover;
 }
 
 .how-to-play a {
