@@ -8,14 +8,16 @@
     <title>Document</title>
 </head>
 <body>
-    <main>
+    <main class="main-slider">
     <?php 
         session_start();
-        if (!isset($_SESSION['cur_level'])) {
-            $_SESSION['cur_level'] = 1;
-        } elseif (isset($_POST['cur_level'])) {
+        if (isset($_POST['cur_level'])) {
             $_SESSION['cur_level'] = $_POST['cur_level'];
+        } else {
+            session_destroy();
+            $_SESSION['cur_level'] = 1;
         }
+        //echo $_SESSION['cur_level'];
         $file = fopen("preguntes/catalan_".$_SESSION['cur_level'].".txt", "r");
         $question_prefix = "* ";
         $correct_answer_prefix = "+ ";
@@ -83,7 +85,7 @@
 
         function print_page_from_data($questions_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix, $max_level) {
             $question = key($questions_array[$selected_indexes[0]]);
-            echo "<div id='question-0' class='question-container' question-number='0'>\n";
+            echo "<div id='question-0' class='question-container slider' question-number='0'>\n";
             echo "<div class='question-header'>\n";
             echo "<h1>".remove_prefix($question, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix)."</h1>\n";
             echo "</div>\n";
@@ -116,7 +118,7 @@
 
             for ($i = 1; $i < count($selected_indexes); $i++) {
                 $question = key($questions_array[$selected_indexes[$i]]);
-                echo "<div id='question-$i' class='question-container hidden-question' question-number='$i'>\n";
+                echo "<div id='question-$i' class='question-container hidden-question slider' question-number='$i'>\n";
                 echo "<div class='question-header'>\n";
                 echo "<h1>".remove_prefix($question, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix)."</h1>";
                 echo "</div>\n";
@@ -151,7 +153,7 @@
                 echo "<form method='POST' id='next-level-container' class='d-none' action='win.php'>";
                 echo "<input type='hidden' id='game_won' name='game_won' value='1'>";
             } else {
-                echo "<form method='POST' id='next-level-container' class='d-none' action='game.php'>";
+                echo "<form method='POST' id='next-level-container' class='d-none slider' action='game.php'>";
             }
             echo "<h1>Nivell Completat!</h1>";
             echo "<input type='submit' value='Següent nivell'>";

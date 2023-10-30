@@ -57,7 +57,10 @@ function get_wrong_message_div(button) {
 }
 
 function show_question(question_number) {
-    document.querySelectorAll(`[question-number='${question_number}']`)[0].classList.remove("hidden-question")
+    let question_div = document.querySelectorAll(`[question-number='${question_number}']`)[0]
+    question_div.classList.remove("hidden-question")
+    question_div.scrollIntoView();
+
 }
 
 function disable_buttons(button_div) {

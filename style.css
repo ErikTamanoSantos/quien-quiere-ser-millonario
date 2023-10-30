@@ -283,6 +283,7 @@ section.how-to-play > h1 {
 
 .question-container {
     height: 100vh;
+    max-height: 100vh;
     width: 100%;
     background-color: var(--gris);
     display: flex;

@@ -9,7 +9,6 @@
 <body>
     <?php
         session_start();
-        session_destroy();
     ?>
     <main class="main-slider">
         <section id="index-header" class="slider">
