@@ -8,6 +8,9 @@
     <title>Document</title>
 </head>
 <body>
+    <nav class="game-info">
+        <span id="reloj">0:00</span>
+    </nav>
     <main class="main-slider">
     <?php 
         session_start();

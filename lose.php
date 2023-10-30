@@ -6,6 +6,8 @@
     <title>Has perdido</title>
 </head>
 <body>
+    <h1>game over</h1>
+
     <button>dale</button>
     <script src="lose_controller.js"></script>
 </body>

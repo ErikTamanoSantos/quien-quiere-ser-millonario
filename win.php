@@ -10,7 +10,6 @@
     <main id="main-win">
         <?php
         session_start();
-        $_POST["game_won"] = true;
         if (!isset($_POST["game_won"])) {
             echo "<section id='bad-win'><h1>No t'emportaràs cap premi fent trampes!</h1>";
             echo '<span class="tornar"><a href="http://localhost:8080">Tornar a l\'inici</a><span>👈</span></span><section>';
