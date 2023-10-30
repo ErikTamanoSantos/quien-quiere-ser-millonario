@@ -8,19 +8,33 @@
 </head>
 <body>
     <?php
+        $language;
         session_start();
+        if (isset($_POST["idioma"])) {
+            $_SESSION["idioma"] = $_POST["idioma"];
+        }
+        echo $_POST["idioma"];
+
+        if (isset($_SESSION["idioma"])) {
+            $jsonFile = file_get_contents("texts.json");
+            $jsonTexts = json_decode($jsonFile) -> $_SESSION["idioma"];
+        } else {
+            $jsonFile = file_get_contents("texts.json");
+            $jsonTexts = json_decode($jsonFile) -> ca;
+        }
+        
     ?>
     <main class="main-slider">
         <section id="index-header" class="slider">
             <nav id="index-nav">
-                <form action="" method="get">
+                <form action="" method="POST">
                     <select name="idioma" id="idioma">
-                        <option value="cat">🏴󠁥󠁳󠁣󠁴󠁿 Català</option>
-                        <option value="esp">🇪🇸 Español</option>
-                        <option value="eng">🇺🇸 English</option>
+                        <?php echo '<option value="ca"'.(!isset($_SESSION["idioma"]) ? ' selected' : '').'>🏴󠁥󠁳󠁣󠁴󠁿 Català</option>'; ?>
+                        <?php echo '<option value="es">🇪🇸 Español</option>'; ?>
+                        <option value="en">🇺🇸 English</option>
                     </select>
         
-                    <input type="submit" value="Canviar" disabled>
+                    <input type="submit" value="Canviar">
                 </form>
             </nav>
             <section id="header-title">

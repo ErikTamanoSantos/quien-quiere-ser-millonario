@@ -1,0 +1,113 @@
+{
+    "en": {
+        "index": {
+            "change-lang": "Change",
+            "title": "Who wants to be\na millionaire",
+            "play-button": "PLAY",
+            "scroll-instructions": "Scroll down to read\nthe instructions",
+            "1st-instructions-title": "How to play to \"Who wants to be a millionaire\"",
+            "1st-instructions": "In this game you'll have to answer 18 general knowledge questions.\nWe'll make you a question and there will be 4 possible answers. If your answer is false, you'll have to start again.\nIf it's true, you'll be able to answer the next question.",
+            "2nd-instructions-title": "Progressive difficulty",
+            "2nd-instructions": "For every 3 questions asked correctly, difficulty will be increased.\nThe difficulty will increase until you ask 18 questions correctly. Then you'll have won the game!\nDo you wanna try",
+            "return-header-button": "Go try the game!"
+        },
+        "game": {
+            "correct": "Correct!",
+            "wrong": "You've failed!",
+            "next-level": "Next level",
+            "game-over": "Game over!",
+            "go-start": "GO TO START PAGE",
+            "level-completed": "Level completed!",
+            "file": "english"
+        },
+        "win": {
+            "win-bad-ending": "You'll have no prize being a cheater!",
+            "go-start": "GO TO START PAGE",
+            "win-first-title": "You've answered all the questions!",
+            "win-first-text": "Do you know what it means...?",
+            "win-button": "I don't really know...",
+            "win-second-title": "Congratulations!",
+            "go-start": "GO TO START PAGE",
+            "save-data": "Save data",
+            "player-name": "Player name:",
+            "send-data": "Send"
+        },
+        "lose": {
+            ":v": ":v"
+        }
+    },
+    "es": {
+        "index": {
+            "change-lang": "Cambiar",
+            "title": "Who wants to be\na millionaire",
+            "play-button": "PLAY",
+            "scroll-instructions": "Scroll down to read\nthe instructions",
+            "1st-instructions-title": "How to play to \"Who wants to be a millionaire\"",
+            "1st-instructions": "In this game you'll have to answer 18 general knowledge questions.\nWe'll make you a question and there will be 4 possible answers. If your answer is false, you'll have to start again.\nIf it's true, you'll be able to answer the next question.",
+            "2nd-instructions-title": "Progressive difficulty",
+            "2nd-instructions": "For every 3 questions asked correctly, difficulty will be increased.\nThe difficulty will increase until you ask 18 questions correctly. Then you'll have won the game!\nDo you wanna try",
+            "return-header-button": "Go try the game!"
+        },
+        "game": {
+            "correct": "Correct!",
+            "wrong": "You've failed!",
+            "next-level": "Next level",
+            "game-over": "Game over!",
+            "go-start": "GO TO START PAGE",
+            "level-completed": "Level completed!",
+            "file": "spanish"
+        },
+        "win": {
+            "win-bad-ending": "You'll have no prize being a cheater!",
+            "go-start": "GO TO START PAGE",
+            "win-first-title": "You've answered all the questions!",
+            "win-first-text": "Do you know what it means...?",
+            "win-button": "I don't really know...",
+            "win-second-title": "Congratulations!",
+            "go-start": "GO TO START PAGE",
+            "save-data": "Save data",
+            "player-name": "Player name:",
+            "send-data": "Send"
+        },
+        "lose": {
+            ":v": ":v"
+        }
+    },
+    "ca": {
+        "index": {
+            "change-lang": "Canviar",
+            "title": "Who wants to be\na millionaire",
+            "play-button": "PLAY",
+            "scroll-instructions": "Scroll down to read\nthe instructions",
+            "1st-instructions-title": "How to play to \"Who wants to be a millionaire\"",
+            "1st-instructions": "In this game you'll have to answer 18 general knowledge questions.\nWe'll make you a question and there will be 4 possible answers. If your answer is false, you'll have to start again.\nIf it's true, you'll be able to answer the next question.",
+            "2nd-instructions-title": "Progressive difficulty",
+            "2nd-instructions": "For every 3 questions asked correctly, difficulty will be increased.\nThe difficulty will increase until you ask 18 questions correctly. Then you'll have won the game!\nDo you wanna try",
+            "return-header-button": "Go try the game!"
+        },
+        "game": {
+            "correct": "Correct!",
+            "wrong": "You've failed!",
+            "next-level": "Next level",
+            "game-over": "Game over!",
+            "go-start": "GO TO START PAGE",
+            "level-completed": "Level completed!",
+            "file": "catalan"
+        },
+        "win": {
+            "win-bad-ending": "You'll have no prize being a cheater!",
+            "go-start": "GO TO START PAGE",
+            "win-first-title": "You've answered all the questions!",
+            "win-first-text": "Do you know what it means...?",
+            "win-button": "I don't really know...",
+            "win-second-title": "Congratulations!",
+            "go-start": "GO TO START PAGE",
+            "save-data": "Save data",
+            "player-name": "Player name:",
+            "send-data": "Send"
+        },
+        "lose": {
+            ":v": ":v"
+        }
+    }
+}
