@@ -17,7 +17,6 @@
         if (isset($_POST['cur_level'])) {
             $_SESSION['cur_level'] = $_POST['cur_level'];
         } else {
-            session_destroy();
             $_SESSION['cur_level'] = 1;
         }
         //echo $_SESSION['cur_level'];
