@@ -451,6 +451,7 @@ section.how-to-play > h1 {
     position: fixed;
     background-color: rgba(18, 22, 41, .7);
     backdrop-filter: blur(10px);
+    z-index: 100;
 }
 
 .game-info > #reloj {

@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <main>
+        <?php
+        function render_table() {
+            echo "<table>";
+        }
+        ?>
+    </main>
 </body>
 </html>
