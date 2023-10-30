@@ -8,7 +8,6 @@
 </head>
 <body>
     <?php
-        $language;
         session_start();
         if (isset($_POST["idioma"])) {
             $_SESSION["idioma"] = $_POST["idioma"];
@@ -17,10 +16,12 @@
 
         if (isset($_SESSION["idioma"])) {
             $jsonFile = file_get_contents("texts.json");
-            $jsonTexts = json_decode($jsonFile) -> $_SESSION["idioma"];
+            $_SESSION["jsonTexts"] = json_decode($jsonFile) -> $_SESSION["idioma"];
+            echo "a".$_SESSION["jsonTexts"];
         } else {
             $jsonFile = file_get_contents("texts.json");
-            $jsonTexts = json_decode($jsonFile) -> ca;
+            $_SESSION["jsonTexts"] = json_decode($jsonFile) -> ca;
+            echo "a".$_SESSION["jsonTexts"];
         }
         
     ?>
@@ -29,12 +30,12 @@
             <nav id="index-nav">
                 <form action="" method="POST">
                     <select name="idioma" id="idioma">
-                        <?php echo '<option value="ca"'.(!isset($_SESSION["idioma"]) ? ' selected' : '').'>🏴󠁥󠁳󠁣󠁴󠁿 Català</option>'; ?>
-                        <?php echo '<option value="es">🇪🇸 Español</option>'; ?>
-                        <option value="en">🇺🇸 English</option>
+                        <?php echo '<option value="ca"'. (!isset($_SESSION["idioma"]) ? ' selected' : '') .'>🏴󠁥󠁳󠁣󠁴󠁿 Català</option>'; ?>
+                        <?php echo '<option value="es"'. ($_SESSION["idioma"] === "es" ? ' selected' : '') .'>🇪🇸 Español</option>'; ?>
+                        <?php echo '<option value="en"'. ($_SESSION["idioma"] === "en" ? ' selected' : '') .'>🇺🇸 English</option>'; ?>
                     </select>
         
-                    <input type="submit" value="Canviar">
+                    <?php echo '<input type="submit" value="'. var_dump($_SESSION["jsonTexts"]) /*-> index -> change_lang*/ .'">'; ?>
                 </form>
             </nav>
             <section id="header-title">
