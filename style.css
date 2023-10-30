@@ -31,6 +31,42 @@ h3 { font-family: 'Inter', sans-serif; }
     margin: 0px;
 }
 
+#idioma {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    height: 30px;
+    width: 130px;
+    background: var(--azul);
+    border: 2px solid var(--gris-oscuro);
+    border-radius: 7px;
+    transition: background .3s;
+}
+
+#idioma:hover {
+    background: var(--azul-claro);
+    transition: background .3s;
+}
+
+#idioma > option {
+    background-color: var(--azul);
+}
+
+#index-nav > form > input[type="submit"] {
+    font-family: 'Inter', sans-serif;
+    border-radius: 7px;
+    border: 2px solid var(--gris-oscuro);
+    background: var(--rosita);
+    font-size: 14px;
+    width: auto;
+    height: 30px;
+    transition: background .3s;
+}
+
+#index-nav > form > input[type="submit"]:hover {
+    background-color: var(--rosita-hover);
+    transition: background .3s;
+}
+
 #index-nav {
     padding: 10px 0;
     display: flex;
@@ -95,6 +131,8 @@ h3 { font-family: 'Inter', sans-serif; }
     margin: 20vh auto;
     color: var(--gris-oscuro);
 }
+
+#header-scroll > p { text-align: center; }
 
 #header-scroll > svg {
     animation-name: arrow-movement;
@@ -168,6 +206,7 @@ section.how-to-play > h1 {
     scroll-behavior: smooth;
     font-family: 'Inter', sans-serif;
 }
+
 
 .slider {
     scroll-snap-align: start;

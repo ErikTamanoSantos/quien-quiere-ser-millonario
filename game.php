@@ -20,7 +20,11 @@
             $_SESSION['cur_level'] = 1;
         }
         //echo $_SESSION['cur_level'];
-        $file = fopen("preguntes/catalan_".$_SESSION['cur_level'].".txt", "r");
+        //$_SESSION["idioma"] == "ca" ? "catalan" : ($_SESSION["idioma"] == "es" ? "spanish" : "english")
+        if ($_SESSION["idioma"] === "ca") { $gameLang = "catalan"; }
+        if ($_SESSION["idioma"] === "es") { $gameLang = "spanish"; }
+        if ($_SESSION["idioma"] === "en") { $gameLang = "english"; }
+        $file = fopen("preguntes/".$gameLang."_".$_SESSION['cur_level'].".txt", "r");
         $question_prefix = "* ";
         $correct_answer_prefix = "+ ";
         $wrong_answer_prefix = "- ";
@@ -103,7 +107,7 @@
             echo "</div>\n";
             echo "<div class='message-container'>\n";
             echo "<div class='message-correct d-none'>\n";
-            echo "<h2>Correcte!</h2>\n";
+            echo "<h2>". $_SESSION["jsonTexts"]["game"]["correct"] ."</h2>\n";
             echo "<div class='arrow-container'>\n";
             echo '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-down-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -112,8 +116,8 @@
             echo "</div>\n";
             echo "</div>\n";
             echo "<div class='message-wrong d-none'>\n";
-            echo "<h2>Has fallat!</h2>\n";
-            echo "<a href='http://localhost:8080'>TORNAR A L'INICI</a>\n";
+            echo "<h2>". $_SESSION["jsonTexts"]["game"]["wrong"] ."</h2>\n";
+            echo "<a href='http://localhost:8080'>". $_SESSION["jsonTexts"]["game"]["go_start"] ."</a>\n";
             echo "</div>\n";
             echo "</div>\n";
             echo "</div>\n";
@@ -157,8 +161,8 @@
             } else {
                 echo "<form method='POST' id='next-level-container' class='d-none slider' action='game.php'>";
             }
-            echo "<h1>Nivell Completat!</h1>";
-            echo "<input type='submit' value='Següent nivell'>";
+            echo "<h1>". $_SESSION["jsonTexts"]["game"]["level_completed"] ."</h1>";
+            echo "<input type='submit' value='". $_SESSION["jsonTexts"]["game"]["next_level"] ."'>";
             $next_level = $_SESSION['cur_level']+1;
             echo "<input type='hidden' name='cur_level' value='".$next_level."'>";
             echo "</form>";

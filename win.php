@@ -60,7 +60,7 @@
                         <label for="player_name">Nom del jugador:</label>
                         <input type="text" id="player_name" name="player_name">
                         <input type="hidden" id="score" name="score" value="18">
-                        <input type="submit">
+                        <input type="submit" value="Envia">
                     </form>
                 </section>
             ';  
