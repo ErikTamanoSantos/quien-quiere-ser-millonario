@@ -66,3 +66,35 @@ function disable_buttons(button_div) {
         buttons_array[i].disabled = true
     }
 }
+
+let startTime = 0;
+let pauseTime = 0;
+let timeRunning = false;
+let interval;
+let wannaRestart = true;
+
+function showTime() {
+    const currentTime = (timeRunning ? Date.now() : pauseTime) - startTime;
+    const seconds = Math.floor(currentTime / 1000);
+    const minutes = Math.floor(seconds / 60);
+    document.getElementById("reloj").innerText = minutes + ":" + (seconds % 60).toString().padStart(2, '0');
+}
+
+addEventListener("load", function() {
+    if (!timeRunning && wannaRestart) {
+        startTime = Date.now();
+        interval = setInterval(showTime, 1000);
+        timeRunning = true;
+        wannaRestart = false;
+    }
+});
+
+document.getElementById("reset").addEventListener("click", function() {
+    clearInterval(interval);
+    timeRunning = false;
+    startTime = 0;
+    pauseTime = 0;
+    showTime();
+});
+
+showTime();

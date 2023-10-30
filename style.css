@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+@font-face {
+    font-family: "clock";
+    src:url("/typos/digital-7.ttf");
+}
 
 h1 { font-family: 'Inter', sans-serif; }
 h3 { font-family: 'Inter', sans-serif; }
@@ -433,4 +437,24 @@ section.how-to-play > h1 {
 #next-level-container input:hover {
     background-color: var(--rosita-hover);
     transition: background-color .3s linear;
+}
+
+.game-info {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    padding: 15px 50px;
+    top: 0;
+    position: fixed;
+    background-color: rgba(18, 22, 41, .7);
+    backdrop-filter: blur(10px);
+}
+
+.game-info > #reloj {
+    text-align: center;
+    height: 47px;
+    color: var(--azul-claro);
+    font-family: "clock";
+    font-size: 60px;
 }
