@@ -9,11 +9,15 @@
 </head>
 <body>
     <nav class="game-info">
-        <span id="reloj">0:00</span>
+        <?php    
+            if (isset($_POST['clock'])) { echo '<span id="reloj">'. $_POST['clock'] .'</span>'; } 
+            else { echo '<span id="reloj">0:00</span>'; }
+        ?>
     </nav>
     <main class="main-slider">
-    <?php 
+        <?php 
         session_start();
+        $gameLang;
         if (isset($_POST['cur_level'])) {
             $_SESSION['cur_level'] = $_POST['cur_level'];
         } else {
@@ -21,6 +25,7 @@
         }
         //echo $_SESSION['cur_level'];
         //$_SESSION["idioma"] == "ca" ? "catalan" : ($_SESSION["idioma"] == "es" ? "spanish" : "english")
+        if (!isset($_SESSION["idioma"]))  { $gameLang = "catalan"; }
         if ($_SESSION["idioma"] === "ca") { $gameLang = "catalan"; }
         if ($_SESSION["idioma"] === "es") { $gameLang = "spanish"; }
         if ($_SESSION["idioma"] === "en") { $gameLang = "english"; }
@@ -164,6 +169,7 @@
             echo "<h1>". $_SESSION["jsonTexts"]["game"]["level_completed"] ."</h1>";
             echo "<input type='submit' value='". $_SESSION["jsonTexts"]["game"]["next_level"] ."'>";
             $next_level = $_SESSION['cur_level']+1;
+            echo "<input type='hidden' name='clock' value=''>";     //! Aquí está el intento de POST...
             echo "<input type='hidden' name='cur_level' value='".$next_level."'>";
             echo "</form>";
         }

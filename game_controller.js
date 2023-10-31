@@ -101,3 +101,7 @@ document.getElementById("reset").addEventListener("click", function() {
 });
 
 showTime();
+
+document.querySelector('#reloj').addEventListener('change', () => {
+    document.querySelector('#next-level-container input[name="clock"]').setAttribute('value', document.querySelector('#reloj').innerText);
+});
