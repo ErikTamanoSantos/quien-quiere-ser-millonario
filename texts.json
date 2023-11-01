@@ -12,6 +12,7 @@
             "return_header_button": "Go try the game!"
         },
         "game": {
+            "cur_level": "Current level: ",
             "correct": "Correct!",
             "wrong": "You've failed!",
             "next_level": "Next level",
@@ -49,6 +50,7 @@
             "return_header_button": "¡Vuelve arriba y pruébalo!"
         },
         "game": {
+            "cur_level": "Nivel actual: ",
             "correct": "¡Correcto!",
             "wrong": "¡Has fallado!",
             "next_level": "Siguiente nivel",
@@ -86,6 +88,7 @@
             "return_header_button": "Torna adalt i proba-hi!"
         },
         "game": {
+            "cur_level": "Nivell actual: ",
             "correct": "Correcte!",
             "wrong": "Has fallat!",
             "next_level": "Següent nivell",

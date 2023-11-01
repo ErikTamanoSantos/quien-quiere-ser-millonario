@@ -10,14 +10,21 @@
 <body>
     <nav class="game-info">
         <?php    
+            session_start();
+            $gameLang;
+            if (!isset($_SESSION["idioma"]))  { $gameLang = "catalan"; }
+            if ($_SESSION["idioma"] === "ca") { $gameLang = "catalan"; }
+            if ($_SESSION["idioma"] === "es") { $gameLang = "spanish"; }
+            if ($_SESSION["idioma"] === "en") { $gameLang = "english"; }
             if (isset($_POST['clock'])) { echo '<span id="reloj">'. $_POST['clock'] .'</span>'; } 
             else { echo '<span id="reloj">0:00</span>'; }
+        
+            echo '<span id="cur_level">'. (!isset($_SESSION['cur_level']) ? '1' : $_SESSION["jsonTexts"]["game"]['cur_level'].$_SESSION['cur_level']) .'</span>';
         ?>
     </nav>
     <main class="main-slider">
         <?php 
-        session_start();
-        $gameLang;
+        
         if (isset($_POST['cur_level'])) {
             $_SESSION['cur_level'] = $_POST['cur_level'];
         } else {
@@ -25,10 +32,7 @@
         }
         //echo $_SESSION['cur_level'];
         //$_SESSION["idioma"] == "ca" ? "catalan" : ($_SESSION["idioma"] == "es" ? "spanish" : "english")
-        if (!isset($_SESSION["idioma"]))  { $gameLang = "catalan"; }
-        if ($_SESSION["idioma"] === "ca") { $gameLang = "catalan"; }
-        if ($_SESSION["idioma"] === "es") { $gameLang = "spanish"; }
-        if ($_SESSION["idioma"] === "en") { $gameLang = "english"; }
+        
         $file = fopen("preguntes/".$gameLang."_".$_SESSION['cur_level'].".txt", "r");
         $question_prefix = "* ";
         $correct_answer_prefix = "+ ";
