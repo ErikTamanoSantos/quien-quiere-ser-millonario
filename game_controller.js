@@ -11,6 +11,37 @@ function init() {
     for (let i = 0; i < wrong_buttons.length; i++) {
         wrong_buttons[i].addEventListener('click', click_wrong_answer);
     }
+
+    let startTime = 0;
+    let pauseTime = 0;
+    let timeRunning = false;
+    let interval;
+    let wannaRestart = true;
+
+    function showTime() {
+        const currentTime = (timeRunning ? Date.now() : pauseTime) - startTime;
+        const seconds = Math.floor(currentTime / 1000);
+        const minutes = Math.floor(seconds / 60);
+        document.getElementById("reloj").innerText = minutes + ":" + (seconds % 60).toString().padStart(2, '0');
+        document.querySelector('#next-level-container input[name="clock"]').setAttribute('value', document.getElementById('reloj').innerText);
+    }
+
+    addEventListener("load", function() {
+        if (document.getElementById('reloj').innerText !== '0:00') {
+            // startTime = Date.now();
+            interval = this.setInterval(showTime, 1000);
+            timeRunning = true;
+            wannaRestart = false;
+        }
+        if (!timeRunning && wannaRestart) {
+            startTime = Date.now();
+            interval = setInterval(showTime, 1000);
+            timeRunning = true;
+            wannaRestart = false;
+        }
+    });
+
+    showTime();
 }
 
 function click_correct_answer() {
@@ -70,38 +101,3 @@ function disable_buttons(button_div) {
     }
 }
 
-let startTime = 0;
-let pauseTime = 0;
-let timeRunning = false;
-let interval;
-let wannaRestart = true;
-
-function showTime() {
-    const currentTime = (timeRunning ? Date.now() : pauseTime) - startTime;
-    const seconds = Math.floor(currentTime / 1000);
-    const minutes = Math.floor(seconds / 60);
-    document.getElementById("reloj").innerText = minutes + ":" + (seconds % 60).toString().padStart(2, '0');
-}
-
-addEventListener("load", function() {
-    if (!timeRunning && wannaRestart) {
-        startTime = Date.now();
-        interval = setInterval(showTime, 1000);
-        timeRunning = true;
-        wannaRestart = false;
-    }
-});
-
-document.getElementById("reset").addEventListener("click", function() {
-    clearInterval(interval);
-    timeRunning = false;
-    startTime = 0;
-    pauseTime = 0;
-    showTime();
-});
-
-showTime();
-
-document.querySelector('#reloj').addEventListener('change', () => {
-    document.querySelector('#next-level-container input[name="clock"]').setAttribute('value', document.querySelector('#reloj').innerText);
-});
