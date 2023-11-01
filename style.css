@@ -571,3 +571,72 @@ section.how-to-play > h1 {
     background-color: var(--rosita-hover);
     transition: background-color .3s linear;
 }
+
+
+/** lose.php */
+.main-lose {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.first-lose {
+    background-color: var(--rojo);
+    height: 100vh;
+    width: 100%;
+    color: var(--gris-oscuro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.main-lose section > h1 {
+    font-size: 5vw;
+}
+
+.main-lose section > h4 {
+    font-size: 1.5vw;
+}
+
+.first-lose button {
+    border: 3px solid var(--gris-oscuro);
+    border-radius: 15px;
+    font-size: 1vw;
+    padding: 12px 19px;
+    margin-top: 30px;
+    background-color: var(--azul-claro);
+    font-family: 'Inter', sans-serif;
+    color: var(--gris-oscuro);
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.first-lose button:hover {
+    background-color: var(--azul);
+    transition: all .3s;
+}
+
+.second-lose {
+    background-image: url(imgs/lose.png);
+    background-repeat: repeat-y;
+    height: 100vh;
+    width: 100%;
+    display: none;
+}
+
+.fixed-lose {
+    position: fixed;
+    top:0;
+    background-color: rgba(18, 22, 41, .2);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    color: white;
+}

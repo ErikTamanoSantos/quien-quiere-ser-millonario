@@ -34,7 +34,12 @@
             "send_data": "Send"
         },
         "lose": {
-            ":v": ":v"
+            "you_failed": "¡You've failed!",
+            "you_know": "Do you know what it means..?",
+            "lose_next_button": "I don't know...",
+            "you_lose": "You've lost the game!",
+            "dont_worry": "But don't worry, you can try again!",
+            "lose_first_text": "GO TO START PAGE"
         }
     },
     "es": {
@@ -72,7 +77,12 @@
             "send_data": "Enviar"
         },
         "lose": {
-            ":v": ":v"
+            "you_failed": "¡Has fallado!",
+            "you_know": "¿Sabes qué significa eso...?",
+            "lose_next_button": "Ni idea...",
+            "you_lose": "¡Has perdido el juego!",
+            "dont_worry": "Pero no te preocupes, ¡puedes volver a probar!",
+            "lose_first_text": "VOLVER AL INICIO"
         }
     },
     "ca": {
@@ -110,7 +120,12 @@
             "send_data": "Envia"
         },
         "lose": {
-            ":v": ":v"
+            "you_failed": "Has fallat!",
+            "you_know": "Saps què vol dir...?",
+            "lose_next_button": "Ni idea...",
+            "you_lose": "Has perdut!",
+            "dont_worry": "Però no et preocupis, pots tornar a provar!",
+            "lose_first_text": "TORNAR A L'INICI"
         }
     }
 }
