@@ -3,6 +3,7 @@ const fail_audio = new Audio('audios/fail.mp3');
 
 addEventListener('load', init);
 function init() {
+
     let correct_buttons = document.getElementsByClassName("correct-button");
     for (let i = 0; i < correct_buttons.length; i++) {
         correct_buttons[i].addEventListener('click', click_correct_answer);
@@ -47,6 +48,7 @@ function init() {
 function click_correct_answer() {
     correct_audio.play();
     let question_number = get_question_number(this)
+    console.log(get_time())
     if (question_number < 2) {
         show_question(question_number+1)
         this.classList.add("clicked")
@@ -66,6 +68,8 @@ function click_wrong_answer() {
     fail_audio.play();
     this.classList.add("clicked")
     let answer_div = get_answer_div(this)
+    let question_number = get_question_number(this)
+    console.log(get_score(question_number))
     let msg = get_wrong_message_div(this);
     msg.classList.remove("d-none");
     disable_buttons(answer_div);
@@ -101,3 +105,30 @@ function disable_buttons(button_div) {
     }
 }
 
+function get_time() {
+    let clock = document.getElementById("reloj").innerHTML
+    clock = clock.split(":")
+    return clock[0]*60 + clock[1]
+}
+
+function get_score(question_number, win = false) {
+    let cur_level = get_cur_level();
+    let score = 0;
+    if (win) {
+        for (let i = 1; i < cur_level; i++) {
+            score += i * 3;
+        }
+        score += cur_level * question_number
+        
+    } else {
+        for (let i = 1; i < cur_level; i++) {
+            score += i * 3;
+        }
+        score += cur_level * question_number
+    }
+    return score;
+}
+
+function get_cur_level() {
+    return document.getElementById("cur_level").getAttribute("value");
+}

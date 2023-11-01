@@ -11,6 +11,11 @@
     <nav class="game-info">
         <?php    
             session_start();
+            if (isset($_POST['cur_level'])) {
+                $_SESSION['cur_level'] = $_POST['cur_level'];
+            } else {
+                $_SESSION['cur_level'] = 1;
+            }
             $gameLang;
             if (!isset($_SESSION["idioma"]))  { $gameLang = "catalan"; }
             if ($_SESSION["idioma"] === "ca") { $gameLang = "catalan"; }
@@ -19,17 +24,11 @@
             if (isset($_POST['clock'])) { echo '<span id="reloj">'. $_POST['clock'] .'</span>'; } 
             else { echo '<span id="reloj">0:00</span>'; }
         
-            echo '<span id="cur_level">'. (!isset($_SESSION['cur_level']) ? '1' : $_SESSION["jsonTexts"]["game"]['cur_level'].$_SESSION['cur_level']) .'</span>';
+            echo '<span id="cur_level" value="'.(!isset($_SESSION['cur_level']) ? '1' : $_SESSION['cur_level']).'">'. (!isset($_SESSION['cur_level']) ? $_SESSION["jsonTexts"]["game"]['cur_level'].'1' : $_SESSION["jsonTexts"]["game"]['cur_level'].$_SESSION['cur_level']) .'</span>';
         ?>
     </nav>
     <main class="main-slider">
         <?php 
-        
-        if (isset($_POST['cur_level'])) {
-            $_SESSION['cur_level'] = $_POST['cur_level'];
-        } else {
-            $_SESSION['cur_level'] = 1;
-        }
         //echo $_SESSION['cur_level'];
         //$_SESSION["idioma"] == "ca" ? "catalan" : ($_SESSION["idioma"] == "es" ? "spanish" : "english")
         
