@@ -12,4 +12,11 @@ addEventListener('load', () => {
     });
 
     setTimeout(window.scrollBy(0,1), 10);
+
+    
 });
+
+function showSaveScoreForm() {
+    let save_score_form = document.getElementById('save-score-form') 
+    save_score_form.style.display = null
+}

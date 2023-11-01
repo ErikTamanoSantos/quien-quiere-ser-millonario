@@ -40,7 +40,12 @@
             "lose_next_button": "I don't know...",
             "you_lose": "You've lost the game!",
             "dont_worry": "But don't worry, you can try again!",
-            "lose_first_text": "GO TO START PAGE"
+            "lose_first_text": "GO TO START PAGE",
+            "save_data": "Save data",
+            "player_name": "Player name:",
+            "send_data": "Send",
+            "score": "Score:",
+            "save_msg": "Data saved!"
         }
     },
     "es": {
@@ -84,7 +89,12 @@
             "lose_next_button": "Ni idea...",
             "you_lose": "¡Has perdido el juego!",
             "dont_worry": "Pero no te preocupes, ¡puedes volver a probar!",
-            "lose_first_text": "VOLVER AL INICIO"
+            "lose_first_text": "VOLVER AL INICIO",
+            "save_data": "Guardar datos",
+            "player_name": "Nombre del jugador:",
+            "send_data": "Enviar",
+            "score": "Puntuación:",
+            "save_msg": "Datos guardados!"
         }
     },
     "ca": {
@@ -128,7 +138,12 @@
             "lose_next_button": "Ni idea...",
             "you_lose": "Has perdut!",
             "dont_worry": "Però no et preocupis, pots tornar a provar!",
-            "lose_first_text": "TORNAR A L'INICI"
+            "lose_first_text": "TORNAR A L'INICI",
+            "save_data": "Guardar dades",
+            "player_name": "Nom del jugador:",
+            "send_data": "Envia",
+            "score": "Puntuació:",
+            "save_msg": "Dades guardades!"
         }
     }
 }
