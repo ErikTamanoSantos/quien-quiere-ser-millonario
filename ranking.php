@@ -54,9 +54,9 @@
                     <table id='ranking-table' cellspacing='0'>
                         <thead>
                             <tr>
-                                <th>Nom</th>
-                                <th>Encerts</th>
-                                <th>Puntuació</th>
+                                <th id='name-col'>Nom</th>
+                                <th id='answer-col'>Encerts</th>
+                                <th  id='score-col'>Puntuació</th>
                             </tr>
                         </thead>
                         <tbody>";

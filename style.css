@@ -519,23 +519,31 @@ section.how-to-play > h1 {
 }
 
 #ranking-div table {
-    width: 60%;
+    width: 40%;
+    table-layout: auto;
     border-collapse: collapse;
     font-family: 'Inter', sans-serif;
+    border: solid var(--gris) 3px;
 }
 
 #ranking-div th {
     background-color: var(--amarillo);
     border: solid var(--gris) 3px;
     font-size: larger;
+    padding: 4px 10px;
+}
+
+#answer-col, #score-col {
+    width:0;
 }
 
 #ranking-div tbody tr {
-    border: solid var(--gris) 2px;
-    border-left: 0;
-    border-right: 0;
     text-align: center;
     font-size: medium;
+}
+
+#ranking-div tbody td {
+    padding: 10px;
 }
 
 #ranking-div a {
