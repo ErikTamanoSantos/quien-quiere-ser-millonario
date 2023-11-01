@@ -37,7 +37,10 @@
             </nav>
             <section id="header-title">
                 <?php echo '<h1>'. $_SESSION["jsonTexts"]["index"]["title"] .'</h1>' ?>
-                <?php echo '<a href="game.php">'. $_SESSION["jsonTexts"]["index"]["play_button"] .'</a>'; ?>
+                <div id="title-buttons">
+                    <?php echo '<a href="game.php">'. $_SESSION["jsonTexts"]["index"]["play_button"] .'</a>'; ?>
+                    <a href="ranking.php">Ranking</a>
+                </div>
             </section>
             <section id="header-scroll">
                 <?php echo '<p>'. $_SESSION["jsonTexts"]["index"]["scroll_instructions"] .'</p>' ?>

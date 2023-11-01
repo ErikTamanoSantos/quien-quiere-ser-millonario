@@ -107,9 +107,15 @@ h3 { font-family: 'Inter', sans-serif; }
     margin-bottom: 40px;
 }
 
-#header-title > a {
+#title-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#header-title a {
     color: var(--gris-oscuro);
     width: fit-content;
+    margin: 0 10px;
     padding: 10px 20px;
     border: 3px solid var(--gris-oscuro);
     background-color: var(--rosita);
@@ -119,7 +125,7 @@ h3 { font-family: 'Inter', sans-serif; }
     transition: background-color .3s linear;
 }
 
-#header-title > a:hover {
+#header-title a:hover {
     background-color: var(--rosita-hover);
     transition: background-color .3s linear;
 }
@@ -499,4 +505,55 @@ section.how-to-play > h1 {
     color: var(--azul-claro);
     font-family: "clock";
     font-size: 60px;
+}
+
+/* ranking .php */
+#ranking-div {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--azul);
+}
+
+#ranking-div table {
+    width: 60%;
+    border-collapse: collapse;
+    font-family: 'Inter', sans-serif;
+}
+
+#ranking-div th {
+    background-color: var(--amarillo);
+    border: solid var(--gris) 3px;
+    font-size: larger;
+}
+
+#ranking-div tbody tr {
+    border: solid var(--gris) 2px;
+    border-left: 0;
+    border-right: 0;
+    text-align: center;
+    font-size: medium;
+}
+
+#ranking-div a {
+    color: var(--gris-oscuro);
+    width: fit-content;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: 3px solid var(--gris-oscuro);
+    background-color: var(--rosita);
+    text-decoration: none;
+    border-radius: 15px;
+    font-size: larger;
+    transition: background-color .3s linear;
+    margin-top: 40px;
+    font-family: 'Inter', sans-serif;
+}
+
+#ranking-div a:hover{
+    background-color: var(--rosita-hover);
+    transition: background-color .3s linear;
 }

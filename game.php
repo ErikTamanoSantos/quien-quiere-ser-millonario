@@ -60,7 +60,7 @@
                         $question = $file_content;
                         $question_answers = [];
                     } else {
-                        if (strlen($file_content) > 1) {
+                        if (trim(strlen($file_content)) > 1) {
                             array_push($question_answers, $file_content);
                         }
                     }
