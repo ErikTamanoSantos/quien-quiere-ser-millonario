@@ -25,24 +25,26 @@ function init() {
         document.getElementById("reloj").innerText = minutes + ":" + (seconds % 60).toString().padStart(2, '0');
         document.querySelector('#next-level-container input[name="clock"]').setAttribute('value', document.getElementById('reloj').innerText);
     }
+    
+    if (document.getElementById('reloj').innerText !== '0:00') {
+        let tiempoPasado = document.getElementById('reloj').innerText;
+        let minutos_segundos = tiempoPasado.split(':');
+        startTime = Date.now() - (minutos_segundos[0] * 60000 + minutos_segundos[1] * 1000);
+        interval = setInterval(showTime, 1000);
+        timeRunning = true;
+        wannaRestart = false;
+    }
 
-    addEventListener("load", function() {
-        if (document.getElementById('reloj').innerText !== '0:00') {
-            // startTime = Date.now();
-            interval = this.setInterval(showTime, 1000);
-            timeRunning = true;
-            wannaRestart = false;
-        }
-        if (!timeRunning && wannaRestart) {
-            startTime = Date.now();
-            interval = setInterval(showTime, 1000);
-            timeRunning = true;
-            wannaRestart = false;
-        }
-    });
+    if (!timeRunning && wannaRestart) {
+        startTime = Date.now();
+        interval = setInterval(showTime, 1000);
+        timeRunning = true;
+        wannaRestart = false;
+    }
 
     showTime();
 }
+
 
 function click_correct_answer() {
     correct_audio.play();
