@@ -10,14 +10,13 @@
     <main id="main-win">
         <?php
         session_start();
-        $_POST["game_won"] = 1;
         if (!isset($_POST["game_won"])) {
-            echo "<section id='bad-win'><h1>No t'emportaràs cap premi fent trampes!</h1>";
-            echo '<span class="tornar"><a href="http://localhost:8080">Tornar a l\'inici</a><span>👈</span></span><section>';
+            echo "<section id='bad-win'><h1>". $_SESSION["jsonTexts"]["win"]["win_bad_ending"] ."</h1>";
+            echo '<span class="tornar"><a href="http://localhost:8080">'. $_SESSION["jsonTexts"]["win"]["go_start"] .'</a><span>👈</span></span><section>';
         } elseif (isset($_POST["player_name"])) {
             save_score();
             echo '<section class="win-after">
-                    <h1>Enhorabona!</h1>
+                    <h1>'. $_SESSION["jsonTexts"]["win"]["win_second_title"] .'!</h1>
                         <svg id="money-svg" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-coins" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z"></path>
@@ -26,26 +25,21 @@
                             <path d="M3 6v10c0 .888 .772 1.45 2 2"></path>
                             <path d="M3 11c0 .888 .772 1.45 2 2"></path>
                         </svg>
-                        <span class="tornar"><a href="http://localhost:8080">Tornar a l\'inici</a></span><section>
-                        <button id="save-score">Guardar dades</button>
-                        <form id="save-score-form" style="display: none">
-                            <label for="player_name">Nom del jugador:</label>
-                            <input type="text" id="player_name" name="player_name">
-                            <input type="hidden" id="score" name="score" value="18">
-                            <input type="submit">
-                        </form>
+                        <span class="score-span">'.$_SESSION["jsonTexts"]["win"]["score"].' '.$_POST["final_score"].'</span>
+                        <span class="tornar"><a href="http://localhost:8080">'. $_SESSION["jsonTexts"]["win"]["go_start"] .'</a></span><section>
+                        <span class="saved-span">'. $_SESSION["jsonTexts"]["win"]["save_msg"] .'</span>
                     </section>';
         } else {
             echo '
                 <section class="win-before">
-                    <h1>Has respost totes les preguntes!</h1>
-                    <h3>Saps què vol dir això...?</h3>
+                    <h1>'. $_SESSION["jsonTexts"]["win"]["win_first_title"] .'</h1>
+                    <h3>'. $_SESSION["jsonTexts"]["win"]["win_first_text"] .'</h3>
 
-                    <button id="win-transition">No, què vol dir?</button>
+                    <button id="win-transition">'. $_SESSION["jsonTexts"]["win"]["win_button"] .'</button>
                 </section>
 
                 <section class="win-after" style="display: none;">
-                    <h1>Enhorabona!</h1>
+                    <h1>'. $_SESSION["jsonTexts"]["win"]["win_second_title"] .'</h1>
                     <svg id="money-svg" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-coins" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z"></path>
@@ -54,13 +48,15 @@
                         <path d="M3 6v10c0 .888 .772 1.45 2 2"></path>
                         <path d="M3 11c0 .888 .772 1.45 2 2"></path>
                     </svg>
-                    <span class="tornar"><a href="http://localhost:8080">Tornar a l\'inici</a></span><section>
-                    <button id="save-score">Guardar dades</button>
+                    <span class="score-span">'.$_SESSION["jsonTexts"]["win"]["score"].' '.$_POST["final_score"].'</span>
+                    <div 
+                    <span class="tornar"><a href="http://localhost:8080">'. $_SESSION["jsonTexts"]["win"]["go_start"] .'</a></span><section>
+                    <button id="save-score">'. $_SESSION["jsonTexts"]["win"]["save_data"] .'</button>
                     <form id="save-score-form" method="post" style="display: none">
-                        <label for="player_name">Nom del jugador:</label>
+                        <label for="player_name">'. $_SESSION["jsonTexts"]["win"]["player_name"] .'</label>
                         <input type="text" id="player_name" name="player_name">
-                        <input type="hidden" id="score" name="score" value="18">
-                        <input type="submit" value="Envia">
+                        <input type="hidden" id="final_score" name="final_score" value="'.$_POST["final_score"].'">
+                        <input type="submit" value="'. $_SESSION["jsonTexts"]["win"]["send_data"] .'">
                     </form>
                 </section>
             ';  
@@ -69,7 +65,7 @@
             session_regenerate_id();
             $file = 'scores.txt';
             $data = file_get_contents($file);
-            $data .= session_id().";".$_POST["player_name"].";".$_POST["score"].";\n";
+            $data .= session_id().";".$_POST["player_name"].";18;".$_POST["final_score"].";\n";
             file_put_contents($file, $data);
         }
     ?>

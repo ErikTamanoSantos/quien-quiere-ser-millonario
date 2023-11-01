@@ -301,6 +301,10 @@ section.how-to-play > h1 {
     height: 100vh;
 }
 
+.score-span, .saved-span {
+    font-family: 'Inter', sans-serif;
+}
+
 #bad-win {
     display: flex;
     flex-direction: column;
@@ -472,6 +476,10 @@ section.how-to-play > h1 {
     justify-content: center;
     background-color: var(--gris);
     font-family: 'Inter', sans-serif;
+}
+
+#next-level-container h1 {
+    color: white;
 }
 
 #next-level-container input {

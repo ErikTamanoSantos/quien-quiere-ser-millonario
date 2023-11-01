@@ -21,7 +21,7 @@
                 $data = explode(";", $data);
                 $name = $data[1];
                 $answers = $data[2];
-                $score = $data[2];
+                $score = $data[3];
                 $data_array[$i] = array($name => array("answers" => $answers, "score" => $score));
                 $i++;
             }

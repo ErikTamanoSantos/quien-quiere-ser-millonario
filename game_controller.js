@@ -50,7 +50,6 @@ function init() {
 function click_correct_answer() {
     correct_audio.play();
     let question_number = get_question_number(this)
-    console.log(get_time())
     if (question_number < 2) {
         show_question(question_number+1)
         this.classList.add("clicked")
@@ -62,7 +61,12 @@ function click_correct_answer() {
         this.classList.add("clicked")
         let answer_div = get_answer_div(this)
         disable_buttons(answer_div);
+        console.log(get_score(question_number, true))
         document.getElementById("next-level-container").classList.remove("d-none")
+        document.getElementById("next-level-container").scrollIntoView()
+        if (get_cur_level() == 6) {
+            document.getElementById("final_score").value = get_score(question_number, true)
+        }
     }
 }
 
@@ -71,7 +75,9 @@ function click_wrong_answer() {
     this.classList.add("clicked")
     let answer_div = get_answer_div(this)
     let question_number = get_question_number(this)
-    console.log(get_score(question_number))
+    document.getElementById("lose_final_score").value = get_score(question_number)
+    document.getElementById("lose_correct_answers").value = parseInt(get_cur_level())*3 + parseInt(question_number)-1;
+    document.getElementById("lose_form").submit()
     let msg = get_wrong_message_div(this);
     msg.classList.remove("d-none");
     disable_buttons(answer_div);
@@ -110,7 +116,7 @@ function disable_buttons(button_div) {
 function get_time() {
     let clock = document.getElementById("reloj").innerHTML
     clock = clock.split(":")
-    return clock[0]*60 + clock[1]
+    return parseInt(clock[0])*60 + parseInt(clock[1])
 }
 
 function get_score(question_number, win = false) {
@@ -118,15 +124,18 @@ function get_score(question_number, win = false) {
     let score = 0;
     if (win) {
         for (let i = 1; i < cur_level; i++) {
-            score += i * 3;
+            score += i * 3 * 100;
         }
-        score += cur_level * question_number
-        
+        score += cur_level * question_number * 100
+        let time = get_time();
+        if (time < 300) {
+            score += Math.floor(1000 - (1000/300) * time)
+        }
     } else {
         for (let i = 1; i < cur_level; i++) {
-            score += i * 3;
+            score += i * 3 * 100;
         }
-        score += cur_level * question_number
+        score += cur_level * question_number * 100
     }
     return score;
 }
