@@ -1,0 +1,152 @@
+{
+    "en": {
+        "script_disabled": "This browser has JavaScript disabled!",
+        "index": {
+            "change_lang": "Change",
+            "title": "Who wants to be<br>a millionaire",
+            "play_button": "PLAY",
+            "scroll_instructions": "Scroll down to read<br>the instructions",
+            "1st_instructions_title": "How to play to \"Who wants to be a millionaire\"",
+            "1st_instructions": "In this game you'll have to answer 18 general knowledge questions.<br>We'll make you a question and there will be 4 possible answers. If your answer is false, you'll have to start again.<br>If it's true, you'll be able to answer the next question.",
+            "2nd_instructions_title": "Progressive difficulty",
+            "2nd_instructions": "For every 3 questions asked correctly, difficulty will be increased.<br>The difficulty will increase until you ask 18 questions correctly. Then you'll have won the game!<br><br>Do you wanna try?",
+            "return_header_button": "Go try the game!"
+        },
+        "game": {
+            "cur_level": "Current level: ",
+            "correct": "Correct!",
+            "wrong": "You've failed!",
+            "next_level": "Next level",
+            "game_over": "Game over!",
+            "go_start": "GO TO START PAGE",
+            "level_completed": "Level completed!",
+            "file": "english"
+        },
+        "win": {
+            "win_bad_ending": "You'll have no prize being a cheater!",
+            "go_start": "GO TO START PAGE",
+            "win_first_title": "You've answered all the questions!",
+            "win_first_text": "Do you know what it means...?",
+            "win_button": "I don't really know...",
+            "win_second_title": "Congratulations!",
+            "save_data": "Save data",
+            "player_name": "Player name:",
+            "send_data": "Send",
+            "score": "Score:",
+            "save_msg": "Data saved!"
+        },
+        "lose": {
+            "you_failed": "¡You've failed!",
+            "you_know": "Do you know what it means..?",
+            "lose_next_button": "I don't know...",
+            "you_lose": "You've lost the game!",
+            "dont_worry": "But don't worry, you can try again!",
+            "lose_first_text": "GO TO START PAGE",
+            "save_data": "Save data",
+            "player_name": "Player name:",
+            "send_data": "Send",
+            "score": "Score:",
+            "save_msg": "Data saved!"
+        }
+    },
+    "es": {
+        "script_disabled": "¡Este navegador tiene JavaScript deshabilitado!",
+        "index": {
+            "change_lang": "Cambiar",
+            "title": "Quien quiere ser<br>millonario",
+            "play_button": "Jugar",
+            "scroll_instructions": "Haz scroll hacia abajo para<br>leer las instrucciones",
+            "1st_instructions_title": "Como jugar a \"¿Quién quiere ser millonario?\"",
+            "1st_instructions": "En este juego tendrás que responder a 18 preguntas de cultura general.<br>Por cada pregunta habrán 4 posibles respuestas. Si fallas, vuelves al inicio.<br> Si aciertas, podrás responder a la siguiente pregunta.",
+            "2nd_instructions_title": "Dificultad progresiva",
+            "2nd_instructions": "Por cada 3 preguntas acertadas, la dificultad incrementará.<br>Ésta seguirá incrementando hasta que se respondan 18 preguntas correctamente. Entonces habrás ganado!<br>¿Quieres probar?",
+            "return_header_button": "¡Vuelve arriba y pruébalo!"
+        },
+        "game": {
+            "cur_level": "Nivel actual: ",
+            "correct": "¡Correcto!",
+            "wrong": "¡Has fallado!",
+            "next_level": "Siguiente nivel",
+            "game_over": "¡Fin del juego!",
+            "go_start": "VOLVER AL INICIO",
+            "level_completed": "¡Nivel completado!",
+            "file": "spanish"
+        },
+        "win": {
+            "win_bad_ending": "¡No conseguirás nada haciendo trampas!",
+            "go_start": "VOLVER AL INICIO",
+            "win_first_title": "¡Has respondido todas las preguntas!",
+            "win_first_text": "¿Sabes qué significa eso...?",
+            "win_button": "No tengo ni idea...",
+            "win_second_title": "¡Enhorabuena!",
+            "save_data": "Guardar datos",
+            "player_name": "Nombre del jugador:",
+            "send_data": "Enviar",
+            "score": "Puntuación:",
+            "save_msg": "Datos guardados!"
+        },
+        "lose": {
+            "you_failed": "¡Has fallado!",
+            "you_know": "¿Sabes qué significa eso...?",
+            "lose_next_button": "Ni idea...",
+            "you_lose": "¡Has perdido el juego!",
+            "dont_worry": "Pero no te preocupes, ¡puedes volver a probar!",
+            "lose_first_text": "VOLVER AL INICIO",
+            "save_data": "Guardar datos",
+            "player_name": "Nombre del jugador:",
+            "send_data": "Enviar",
+            "score": "Puntuación:",
+            "save_msg": "Datos guardados!"
+        }
+    },
+    "ca": {
+        "script_disabled": "Aquest navegador té JavaScript deshabilitat!",
+        "index": {
+            "change_lang": "Canviar",
+            "title": "Qui vol ser<br>milionari",
+            "play_button": "JUGAR",
+            "scroll_instructions": "Fes scroll cap abaix per <br>veure les instruccions",
+            "1st_instructions_title": "Com jugar al \"Qui vol ser milionari\"?",
+            "1st_instructions": "En aquest joc hauràs d'afrontar-te a un total de 18 preguntes de cultura general. <br>Et farem una pregunta i tindràs 4 posibles respostes. Si falles, hauràs de tornar a començar, si l'encertes, <br>hauràs de contestar una altra pregunta.",
+            "2nd_instructions_title": "Dificultat progresiva",
+            "2nd_instructions": "Cada 3 preguntes que aconsegueixis respondre, la dificultat augmentarà. <br>La dificultat continuarà progresant fins arribar a les 18 preguntes encertades. Llavors, hauràs guanyat el joc! <br><br>Vols probar?",
+            "return_header_button": "Torna adalt i proba-hi!"
+        },
+        "game": {
+            "cur_level": "Nivell actual: ",
+            "correct": "Correcte!",
+            "wrong": "Has fallat!",
+            "next_level": "Següent nivell",
+            "game_over": "Fi del joc!",
+            "go_start": "TORNAR A L'INICI",
+            "level_completed": "Nivell Completat!",
+            "file": "catalan"
+        },
+        "win": {
+            "win_bad_ending": "No t'emportaràs cap premi fent trampes!",
+            "go_start": "TORNAR A L'INICI",
+            "win_first_title": "Has respost totes les preguntes!",
+            "win_first_text": "Saps què vol dir això...?",
+            "win_button": "No, què vol dir?",
+            "win_second_title": "Enhorabona!",
+            "save_data": "Guardar dades",
+            "player_name": "Nom del jugador:",
+            "send_data": "Envia",
+            "score": "Puntuació:",
+            "save_msg": "Dades guardades!"
+        },
+        "lose": {
+            "you_failed": "Has fallat!",
+            "you_know": "Saps què vol dir...?",
+            "lose_next_button": "Ni idea...",
+            "you_lose": "Has perdut!",
+            "dont_worry": "Però no et preocupis, pots tornar a provar!",
+            "lose_first_text": "TORNAR A L'INICI",
+            "save_data": "Guardar dades",
+            "player_name": "Nom del jugador:",
+            "send_data": "Envia",
+            "score": "Puntuació:",
+            "save_msg": "Dades guardades!"
+        }
+    }
+}

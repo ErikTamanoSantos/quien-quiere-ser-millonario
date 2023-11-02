@@ -8,15 +8,36 @@
     <title>Document</title>
 </head>
 <body>
-    <main>
-    <?php 
-        session_start();
-        if (!isset($_SESSION['cur_level'])) {
-            $_SESSION['cur_level'] = 1;
-        } elseif (isset($_POST['cur_level'])) {
-            $_SESSION['cur_level'] = $_POST['cur_level'];
-        }
-        $file = fopen("preguntes/catalan_".$_SESSION['cur_level'].".txt", "r");
+    <form class="d-none" id="lose_form" action="lose.php" method="POST">
+        <input type="hidden" name="final_score" id="lose_final_score" value="0">
+        <input type="hidden" name="correct_answers" id="lose_correct_answers" value="0">
+        <input type="hidden" name="game_lost" id="game_lost" value="1">
+    </form>
+    <nav class="game-info d-none">
+        <?php    
+            session_start();
+            if (isset($_POST['cur_level'])) {
+                $_SESSION['cur_level'] = $_POST['cur_level'];
+            } else {
+                $_SESSION['cur_level'] = 1;
+            }
+            $gameLang;
+            if (!isset($_SESSION["idioma"]))  { $gameLang = "catalan"; }
+            if ($_SESSION["idioma"] === "ca") { $gameLang = "catalan"; }
+            if ($_SESSION["idioma"] === "es") { $gameLang = "spanish"; }
+            if ($_SESSION["idioma"] === "en") { $gameLang = "english"; }
+            if (isset($_POST['clock'])) { echo '<span id="reloj">'. $_POST['clock'] .'</span>'; } 
+            else { echo '<span id="reloj">0:00</span>'; }
+        
+            echo '<span id="cur_level" value="'.(!isset($_SESSION['cur_level']) ? '1' : $_SESSION['cur_level']).'">'. (!isset($_SESSION['cur_level']) ? $_SESSION["jsonTexts"]["game"]['cur_level'].'1' : $_SESSION["jsonTexts"]["game"]['cur_level'].$_SESSION['cur_level']) .'</span>';
+        ?>
+    </nav>
+    <main class="main-slider d-none">
+        <?php 
+        //echo $_SESSION['cur_level'];
+        //$_SESSION["idioma"] == "ca" ? "catalan" : ($_SESSION["idioma"] == "es" ? "spanish" : "english")
+        
+        $file = fopen("preguntes/".$gameLang."_".$_SESSION['cur_level'].".txt", "r");
         $question_prefix = "* ";
         $correct_answer_prefix = "+ ";
         $wrong_answer_prefix = "- ";
@@ -47,7 +68,7 @@
                         $question = $file_content;
                         $question_answers = [];
                     } else {
-                        if (strlen($file_content) > 1) {
+                        if (trim(strlen($file_content)) > 1) {
                             array_push($question_answers, $file_content);
                         }
                     }
@@ -83,7 +104,7 @@
 
         function print_page_from_data($questions_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix, $max_level) {
             $question = key($questions_array[$selected_indexes[0]]);
-            echo "<div id='question-0' class='question-container' question-number='0'>\n";
+            echo "<div id='question-0' class='question-container slider' question-number='0'>\n";
             echo "<div class='question-header'>\n";
             echo "<h1>".remove_prefix($question, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix)."</h1>\n";
             echo "</div>\n";
@@ -99,7 +120,7 @@
             echo "</div>\n";
             echo "<div class='message-container'>\n";
             echo "<div class='message-correct d-none'>\n";
-            echo "<h2>Correcte!</h2>\n";
+            echo "<h2>". $_SESSION["jsonTexts"]["game"]["correct"] ."</h2>\n";
             echo "<div class='arrow-container'>\n";
             echo '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-down-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -108,15 +129,15 @@
             echo "</div>\n";
             echo "</div>\n";
             echo "<div class='message-wrong d-none'>\n";
-            echo "<h2>Has fallat!</h2>\n";
-            echo "<a href='http://localhost:8080'>TORNAR A L'INICI</a>\n";
+            echo "<h2>". $_SESSION["jsonTexts"]["game"]["wrong"] ."</h2>\n";
+            echo "<a href='http://localhost:8080'>". $_SESSION["jsonTexts"]["game"]["go_start"] ."</a>\n";
             echo "</div>\n";
             echo "</div>\n";
             echo "</div>\n";
 
             for ($i = 1; $i < count($selected_indexes); $i++) {
                 $question = key($questions_array[$selected_indexes[$i]]);
-                echo "<div id='question-$i' class='question-container hidden-question' question-number='$i'>\n";
+                echo "<div id='question-$i' class='question-container hidden-question slider' question-number='$i'>\n";
                 echo "<div class='question-header'>\n";
                 echo "<h1>".remove_prefix($question, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix)."</h1>";
                 echo "</div>\n";
@@ -132,7 +153,7 @@
                 echo "</div>\n";
                 echo "<div class='message-container'>\n";
                 echo "<div class='message-correct d-none'>\n";
-                echo "<h2>Correcte!</h2>\n";
+                echo "<h2>". $_SESSION["jsonTexts"]["game"]["correct"] ."</h2>\n";
                 echo "<div class='arrow-container'>\n";
                 echo '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-down-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -141,25 +162,32 @@
                 echo "</div>\n";
                 echo "</div>\n";
                 echo "<div class='message-wrong d-none'>\n";
-                echo "<h2>Has fallat!</h2>\n";
-                echo "<a href='http://localhost:8080'>TORNAR A L'INICI</a>\n";
+                echo "<h2>". $_SESSION["jsonTexts"]["game"]["wrong"] ."</h2>\n";
+                echo "<a href='http://localhost:8080'>". $_SESSION["jsonTexts"]["game"]["go_start"] ."</a>\n";
                 echo "</div>\n";
                 echo "</div>\n";
                 echo "</div>\n";
             }
             if ($_SESSION['cur_level'] == $max_level) {
-                echo "<form method='POST' id='next-level-container' class='d-none' action='win.php'>";
+                echo "<form method='POST' id='next-level-container' class='d-none slider' action='win.php'>";
                 echo "<input type='hidden' id='game_won' name='game_won' value='1'>";
+                echo "<input type='hidden' id='final_score' name='final_score' value='0'>";
             } else {
-                echo "<form method='POST' id='next-level-container' class='d-none' action='game.php'>";
+                echo "<form method='POST' id='next-level-container' class='d-none slider' action='game.php'>";
             }
-            echo "<h1>Nivell Completat!</h1>";
-            echo "<input type='submit' value='Següent nivell'>";
+            echo "<h1>". $_SESSION["jsonTexts"]["game"]["level_completed"] ."</h1>";
+            echo "<input type='submit' value='". $_SESSION["jsonTexts"]["game"]["next_level"] ."'>";
             $next_level = $_SESSION['cur_level']+1;
+            echo "<input type='hidden' name='clock' value=''>";     //! Aquí está el intento de POST...
             echo "<input type='hidden' name='cur_level' value='".$next_level."'>";
             echo "</form>";
         }
     ?>
     </main>
+    <noscript>
+        <div class="disabled-script">
+            <h2><?php echo $_SESSION["jsonTexts"]["script_disabled"] ?></h2>
+        </div>
+    </noscript>
 </body>
 </html>
