@@ -9,6 +9,9 @@
 <body>
     <?php
         session_start();
+        if (!isset($_SESSION["idioma"])) {
+            $_SESSION["idioma"] = "ca";
+        }
         if (isset($_POST["idioma"])) {
             $_SESSION["idioma"] = $_POST["idioma"];
         }
@@ -22,7 +25,7 @@
         }
         
     ?>
-    <main class="main-slider">
+    <main class="main-slider d-none">
         <section id="index-header" class="slider">
             <nav id="index-nav">
                 <form action="" method="POST">
@@ -68,6 +71,11 @@
             <!--<button id="ring-button">ringring</button>-->
         </section>
     </main>
+    <noscript>
+        <div class="disabled-script">
+            <h2><?php echo $_SESSION["jsonTexts"]["script_disabled"] ?></h2>
+        </div>
+    </noscript>
     <script src="help_controller.js"></script>
 </body>
 </html>

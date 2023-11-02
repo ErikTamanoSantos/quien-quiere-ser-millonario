@@ -1,4 +1,6 @@
 addEventListener('load', () => {
+    document.getElementsByTagName("main")[0].classList.remove("d-none")
+    document.getElementsByTagName("noscript")[0].classList.add("d-none")
     const button = document.querySelector("button");
     const firstLose = document.querySelector(".first-lose");
     const secondLose = document.querySelector(".second-lose")

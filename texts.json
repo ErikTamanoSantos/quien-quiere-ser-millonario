@@ -1,5 +1,6 @@
 {
     "en": {
+        "script_disabled": "This browser has JavaScript disabled!",
         "index": {
             "change_lang": "Change",
             "title": "Who wants to be<br>a millionaire",
@@ -49,6 +50,7 @@
         }
     },
     "es": {
+        "script_disabled": "¡Este navegador tiene JavaScript deshabilitado!",
         "index": {
             "change_lang": "Cambiar",
             "title": "Quien quiere ser<br>millonario",
@@ -98,6 +100,7 @@
         }
     },
     "ca": {
+        "script_disabled": "Aquest navegador té JavaScript deshabilitat!",
         "index": {
             "change_lang": "Canviar",
             "title": "Qui vol ser<br>milionari",

@@ -7,8 +7,9 @@
     <title>Ranking</title>
 </head>
 <body>
-    <main>
+    <main class="d-none">
         <?php
+        session_start();
         $data_array = get_data();
         $data_array = sort_data_by_score_descending($data_array);
         render_table($data_array);
@@ -74,5 +75,11 @@
         }
         ?>
     </main>
+    <noscript>
+        <div class="disabled-script">
+            <h2><?php echo $_SESSION["jsonTexts"]["script_disabled"] ?></h2>
+        </div>
+    </noscript>
+    <script src="ranking_controller.js"></script>
 </body>
 </html>

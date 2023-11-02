@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main id="main-win">
+    <main id="main-win" class="d-none">
         <?php
         session_start();
         if (!isset($_POST["game_won"])) {
@@ -49,7 +49,6 @@
                         <path d="M3 11c0 .888 .772 1.45 2 2"></path>
                     </svg>
                     <span class="score-span">'.$_SESSION["jsonTexts"]["win"]["score"].' '.$_POST["final_score"].'</span>
-                    <div 
                     <span class="tornar"><a href="http://localhost:8080">'. $_SESSION["jsonTexts"]["win"]["go_start"] .'</a></span><section>
                     <button id="save-score">'. $_SESSION["jsonTexts"]["win"]["save_data"] .'</button>
                     <form id="save-score-form" method="post" style="display: none">
@@ -71,6 +70,11 @@
         }
     ?>
     </main>
+    <noscript>
+        <div class="disabled-script">
+            <h2><?php echo $_SESSION["jsonTexts"]["script_disabled"] ?></h2>
+        </div>
+    </noscript>
     <script src="win_controller.js"></script>
 </body>
 </html>

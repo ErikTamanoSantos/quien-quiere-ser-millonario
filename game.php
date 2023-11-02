@@ -13,7 +13,7 @@
         <input type="hidden" name="correct_answers" id="lose_correct_answers" value="0">
         <input type="hidden" name="game_lost" id="game_lost" value="1">
     </form>
-    <nav class="game-info">
+    <nav class="game-info d-none">
         <?php    
             session_start();
             if (isset($_POST['cur_level'])) {
@@ -32,7 +32,7 @@
             echo '<span id="cur_level" value="'.(!isset($_SESSION['cur_level']) ? '1' : $_SESSION['cur_level']).'">'. (!isset($_SESSION['cur_level']) ? $_SESSION["jsonTexts"]["game"]['cur_level'].'1' : $_SESSION["jsonTexts"]["game"]['cur_level'].$_SESSION['cur_level']) .'</span>';
         ?>
     </nav>
-    <main class="main-slider">
+    <main class="main-slider d-none">
         <?php 
         //echo $_SESSION['cur_level'];
         //$_SESSION["idioma"] == "ca" ? "catalan" : ($_SESSION["idioma"] == "es" ? "spanish" : "english")
@@ -184,5 +184,10 @@
         }
     ?>
     </main>
+    <noscript>
+        <div class="disabled-script">
+            <h2><?php echo $_SESSION["jsonTexts"]["script_disabled"] ?></h2>
+        </div>
+    </noscript>
 </body>
 </html>

@@ -1,5 +1,7 @@
 addEventListener('load', init);
 function init() {
+    document.getElementsByTagName("main")[0].classList.remove("d-none")
+    document.getElementsByTagName("noscript")[0].classList.add("d-none")
     let win_button = document.getElementById('win-transition');
     win_button.addEventListener('click', () => {
         // Pasar de la primera secció de "win.php" a la segona quan has encertat les 18 preguntes.

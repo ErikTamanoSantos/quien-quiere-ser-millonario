@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="main-lose">
+    <main class="main-lose d-none">
         <?php 
         session_start();
         if (isset($_POST["player_name"])) {
@@ -56,6 +56,11 @@
         }
         ?>
     </main>
+    <noscript>
+        <div class="disabled-script">
+            <h2><?php echo $_SESSION["jsonTexts"]["script_disabled"] ?></h2>
+        </div>
+    </noscript>
     <script src="lose_controller.js"></script>
 </body>
 </html>

@@ -3,6 +3,9 @@ const fail_audio = new Audio('audios/fail.mp3');
 
 addEventListener('load', init);
 function init() {
+    document.getElementsByTagName("nav")[0].classList.remove("d-none")
+    document.getElementsByTagName("main")[0].classList.remove("d-none")
+    document.getElementsByTagName("noscript")[0].classList.add("d-none")
 
     let correct_buttons = document.getElementsByClassName("correct-button");
     for (let i = 0; i < correct_buttons.length; i++) {
