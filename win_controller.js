@@ -1,7 +1,9 @@
 addEventListener('load', init);
 function init() {
-    const button = document.getElementById('win-transition');
-    button.addEventListener('click', () => {
+    document.getElementsByTagName("main")[0].classList.remove("d-none")
+    document.getElementsByTagName("noscript")[0].classList.add("d-none")
+    let win_button = document.getElementById('win-transition');
+    win_button.addEventListener('click', () => {
         // Pasar de la primera secció de "win.php" a la segona quan has encertat les 18 preguntes.
         const winBefore = document.querySelector('.win-before');
         const winAfter = document.querySelector('.win-after');
@@ -16,4 +18,12 @@ function init() {
 
         winAudio.play();
     });
+
+    let save_button = document.getElementById('save-score');
+    save_button.addEventListener('click', showSaveScoreForm);
+}
+
+function showSaveScoreForm() {
+    let save_score_form = document.getElementById('save-score-form') 
+    save_score_form.style.display = null
 }

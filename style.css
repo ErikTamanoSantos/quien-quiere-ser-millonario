@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+@font-face {
+    font-family: "clock";
+    src:url("/typos/digital-7.ttf");
+}
 
 h1 { font-family: 'Inter', sans-serif; }
 h3 { font-family: 'Inter', sans-serif; }
@@ -7,7 +11,6 @@ h3 { font-family: 'Inter', sans-serif; }
 .d-none {
     display: none !important;
 }
-
 
 /*index.php*/
 :root {
@@ -25,6 +28,42 @@ h3 { font-family: 'Inter', sans-serif; }
 
 * {
     margin: 0px;
+}
+
+#idioma {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    height: 30px;
+    width: 130px;
+    background: var(--azul);
+    border: 2px solid var(--gris-oscuro);
+    border-radius: 7px;
+    transition: background .3s;
+}
+
+#idioma:hover {
+    background: var(--azul-claro);
+    transition: background .3s;
+}
+
+#idioma > option {
+    background-color: var(--azul);
+}
+
+#index-nav > form > input[type="submit"] {
+    font-family: 'Inter', sans-serif;
+    border-radius: 7px;
+    border: 2px solid var(--gris-oscuro);
+    background: var(--rosita);
+    font-size: 14px;
+    width: auto;
+    height: 30px;
+    transition: background .3s;
+}
+
+#index-nav > form > input[type="submit"]:hover {
+    background-color: var(--rosita-hover);
+    transition: background .3s;
 }
 
 #index-nav {
@@ -67,9 +106,15 @@ h3 { font-family: 'Inter', sans-serif; }
     margin-bottom: 40px;
 }
 
-#header-title > a {
+#title-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#header-title a {
     color: var(--gris-oscuro);
     width: fit-content;
+    margin: 0 10px;
     padding: 10px 20px;
     border: 3px solid var(--gris-oscuro);
     background-color: var(--rosita);
@@ -79,7 +124,7 @@ h3 { font-family: 'Inter', sans-serif; }
     transition: background-color .3s linear;
 }
 
-#header-title > a:hover {
+#header-title a:hover {
     background-color: var(--rosita-hover);
     transition: background-color .3s linear;
 }
@@ -91,6 +136,8 @@ h3 { font-family: 'Inter', sans-serif; }
     margin: 20vh auto;
     color: var(--gris-oscuro);
 }
+
+#header-scroll > p { text-align: center; }
 
 #header-scroll > svg {
     animation-name: arrow-movement;
@@ -135,6 +182,7 @@ section.how-to-play > h1 {
     margin-top: 40px;
     width: 700px;
     height: 300px;
+    object-fit:cover;
 }
 
 .how-to-play a {
@@ -163,6 +211,7 @@ section.how-to-play > h1 {
     scroll-behavior: smooth;
     font-family: 'Inter', sans-serif;
 }
+
 
 .slider {
     scroll-snap-align: start;
@@ -252,6 +301,10 @@ section.how-to-play > h1 {
     height: 100vh;
 }
 
+.score-span, .saved-span {
+    font-family: 'Inter', sans-serif;
+}
+
 #bad-win {
     display: flex;
     flex-direction: column;
@@ -282,6 +335,7 @@ section.how-to-play > h1 {
 
 .question-container {
     height: 100vh;
+    max-height: 100vh;
     width: 100%;
     background-color: var(--gris);
     display: flex;
@@ -382,6 +436,14 @@ section.how-to-play > h1 {
     align-items: center;
 }
 
+.message-correct h2, .message-correct > div > svg {
+    color: var(--verde);
+}
+
+.message-wrong {
+    color: var(--rojo);
+}
+
 .message-correct svg {
     animation-name: arrow-movement;
     animation-duration: .5s;
@@ -411,9 +473,13 @@ section.how-to-play > h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background-color: var(--gris);
-    padding-bottom: 40px;
     font-family: 'Inter', sans-serif;
+}
+
+#next-level-container h1 {
+    color: white;
 }
 
 #next-level-container input {
@@ -433,4 +499,173 @@ section.how-to-play > h1 {
 #next-level-container input:hover {
     background-color: var(--rosita-hover);
     transition: background-color .3s linear;
+}
+
+.game-info {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    height: 75px;
+    width: 100vw;
+    padding: 15px 50px;
+    top: 0;
+    position: fixed;
+    background-color: rgba(18, 22, 41, .7);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    justify-content: space-between;
+}
+
+.game-info #cur_level {
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+}
+
+.game-info > #reloj {
+    text-align: center;
+    color: var(--azul-claro);
+    font-family: "clock";
+    font-size: 60px;
+}
+
+/* ranking .php */
+#ranking-div {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--azul);
+}
+
+#ranking-div table {
+    width: 40%;
+    table-layout: auto;
+    border-collapse: collapse;
+    font-family: 'Inter', sans-serif;
+    border: solid var(--gris) 3px;
+}
+
+#ranking-div th {
+    background-color: var(--amarillo);
+    border: solid var(--gris) 3px;
+    font-size: larger;
+    padding: 4px 10px;
+}
+
+#answer-col, #score-col {
+    width:0;
+}
+
+#ranking-div tbody tr {
+    text-align: center;
+    font-size: medium;
+}
+
+#ranking-div tbody td {
+    padding: 10px;
+}
+
+#ranking-div a {
+    color: var(--gris-oscuro);
+    width: fit-content;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: 3px solid var(--gris-oscuro);
+    background-color: var(--rosita);
+    text-decoration: none;
+    border-radius: 15px;
+    font-size: larger;
+    transition: background-color .3s linear;
+    margin-top: 40px;
+    font-family: 'Inter', sans-serif;
+}
+
+#ranking-div a:hover{
+    background-color: var(--rosita-hover);
+    transition: background-color .3s linear;
+}
+
+
+/** lose.php */
+.main-lose {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.first-lose {
+    background-color: var(--rojo);
+    height: 100vh;
+    width: 100%;
+    color: var(--gris-oscuro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.main-lose section > h1 {
+    font-size: 5vw;
+}
+
+.main-lose section > h4 {
+    font-size: 1.5vw;
+}
+
+.first-lose button {
+    border: 3px solid var(--gris-oscuro);
+    border-radius: 15px;
+    font-size: 1vw;
+    padding: 12px 19px;
+    margin-top: 30px;
+    background-color: var(--azul-claro);
+    font-family: 'Inter', sans-serif;
+    color: var(--gris-oscuro);
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.first-lose button:hover {
+    background-color: var(--azul);
+    transition: all .3s;
+}
+
+.second-lose {
+    background-image: url(imgs/lose.png);
+    background-repeat: repeat-y;
+    height: 100vh;
+    width: 100%;
+    display: none;
+}
+
+.fixed-lose {
+    position: fixed;
+    top:0;
+    background-color: rgba(18, 22, 41, .2);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    color: white;
+}
+
+.disabled-script {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--rojo);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.disabled-script h2 {
+    font-family: 'inter', sans-serif;
 }
