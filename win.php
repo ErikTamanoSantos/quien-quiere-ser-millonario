@@ -56,6 +56,7 @@
                         <label for="player_name">'. $_SESSION["jsonTexts"]["win"]["player_name"] .'</label>
                         <input type="text" id="player_name" name="player_name">
                         <input type="hidden" id="final_score" name="final_score" value="'.$_POST["final_score"].'">
+                        <input type="hidden" name="game_won" value="1">
                         <input type="submit" value="'. $_SESSION["jsonTexts"]["win"]["send_data"] .'">
                     </form>
                 </section>
