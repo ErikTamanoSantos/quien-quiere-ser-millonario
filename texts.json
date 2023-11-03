@@ -36,7 +36,8 @@
             "save_msg": "Data saved!"
         },
         "lose": {
-            "you_failed": "¡You've failed!",
+            "you_failed": "You've failed!",
+            "time_out": "You ran out of time!",
             "you_know": "Do you know what it means..?",
             "lose_next_button": "I don't know...",
             "you_lose": "You've lost the game!",
@@ -87,6 +88,7 @@
         },
         "lose": {
             "you_failed": "¡Has fallado!",
+            "time_out": "¡Te has quedado sin tiempo!",
             "you_know": "¿Sabes qué significa eso...?",
             "lose_next_button": "Ni idea...",
             "you_lose": "¡Has perdido el juego!",
@@ -137,6 +139,7 @@
         },
         "lose": {
             "you_failed": "Has fallat!",
+            "time_out": "T'has quedat sense temps!",
             "you_know": "Saps què vol dir...?",
             "lose_next_button": "Ni idea...",
             "you_lose": "Has perdut!",

@@ -23,7 +23,13 @@
             </section>';
         } else {
             echo '<section class="first-lose">
-                <h1>'. $_SESSION["jsonTexts"]["lose"]["you_failed"] .'</h1>
+                <h1>';
+                if ($_POST["reason"] == "Timeout") {
+                    echo $_SESSION["jsonTexts"]["lose"]["time_out"] ;
+                } else {
+                    echo $_SESSION["jsonTexts"]["lose"]["you_failed"] ;
+                }
+                echo '</h1>
                 <h4>'. $_SESSION["jsonTexts"]["lose"]["you_know"] .'</h4>
                 <button>'. $_SESSION["jsonTexts"]["lose"]["lose_next_button"] .'</button>
             </section>

@@ -1,6 +1,8 @@
 const correct_audio = new Audio('audios/correct.mp3');
 const fail_audio = new Audio('audios/fail.mp3');
 let currQuest = 0;
+let questionFlags = [true, false, false];
+let extraTime = false;
 
 addEventListener('load', init);
 function init() {
@@ -19,12 +21,41 @@ function init() {
         wrong_buttons[i].addEventListener('click', click_wrong_answer);
     }
 
+    if (get_cur_level() > 1) {
+        let question_timer = document.querySelector("#question-0 .question-timer")
+        runTimer(question_timer, currQuest);    
+    }
+    
+
+    createClock();
+    
+}
+
+
+function createClock() {
     let startTime = 0;
     let pauseTime = 0;
     let timeRunning = false;
     let interval;
     let wannaRestart = true;
+    
+    if (document.getElementById('reloj').innerText !== '0:00') {
+        let tiempoPasado = document.getElementById('reloj').innerText;
+        let minutos_segundos = tiempoPasado.split(':');
+        startTime = Date.now() - (minutos_segundos[0] * 60000 + minutos_segundos[1] * 1000);
+        timeRunning = true;
+        wannaRestart = false;
+        interval = setInterval(showTime, 1000);
+    }
 
+    if (!timeRunning && wannaRestart) {
+        startTime = Date.now();
+        timeRunning = true;
+        wannaRestart = false;
+        interval = setInterval(showTime, 1000);
+    }
+
+    
     function showTime() {
         const currentTime = (timeRunning ? Date.now() : pauseTime) - startTime;
         const seconds = Math.floor(currentTime / 1000);
@@ -32,21 +63,44 @@ function init() {
         document.getElementById("reloj").innerText = minutes + ":" + (seconds % 60).toString().padStart(2, '0');
         document.querySelector('#next-level-container input[name="clock"]').setAttribute('value', document.getElementById('reloj').innerText);
     }
-    
-    if (document.getElementById('reloj').innerText !== '0:00') {
-        let tiempoPasado = document.getElementById('reloj').innerText;
-        let minutos_segundos = tiempoPasado.split(':');
-        startTime = Date.now() - (minutos_segundos[0] * 60000 + minutos_segundos[1] * 1000);
-        interval = setInterval(showTime, 1000);
-        timeRunning = true;
-        wannaRestart = false;
-    }
 
-    if (!timeRunning && wannaRestart) {
-        startTime = Date.now();
-        interval = setInterval(showTime, 1000);
-        timeRunning = true;
-        wannaRestart = false;
+    showTime();
+}
+
+function runTimer(timerElement, questionNumber) {
+    console.log(timerElement)
+    let startTime = Date.now();
+    let pauseTime = 0;
+    let timeRunning = true;
+    let interval = setInterval(showTime, 1000);;
+    let wannaRestart = false;
+
+    /*
+    function showTime() {
+        const currentTime = (timeRunning ? Date.now() : pauseTime) - startTime;
+        const seconds = Math.floor(currentTime / 1000);
+        const minutes = Math.floor(seconds / 60);
+        document.getElementById("reloj").innerText = minutes + ":" + (seconds % 60).toString().padStart(2, '0');
+        document.querySelector('#next-level-container input[name="clock"]').setAttribute('value', document.getElementById('reloj').innerText);
+    }
+    */
+
+    function showTime() {
+        if (timeRunning && questionFlags[questionNumber]) {
+            let maxTime = 60;
+            if (extraTime) {
+                maxTime += 20;
+            }
+            const timePassed = (timeRunning ? Date.now() : pauseTime) - startTime;
+            const seconds = Math.floor(timePassed / 1000);
+            const timeRemaining = 60 - seconds;
+            if (timeRemaining == 0) {
+                document.getElementById("reason").value = "Timeout"
+                document.getElementById("lose_form").submit()
+            }
+            timerElement.innerText = timeRemaining.toString().padStart(2, '0');
+        }
+        
     }
 
     showTime();
@@ -54,16 +108,25 @@ function init() {
 
 
 function click_correct_answer() {
+    questionFlags[currQuest] = false
     currQuest++;
+    questionFlags[currQuest] = true
     correct_audio.play();
     let question_number = get_question_number(this)
+    console.log(this)
+    console.log(question_number)
     if (question_number < 2) {
         show_question(question_number+1)
         this.classList.add("clicked")
         let answer_div = get_answer_div(this)
+        console.log(answer_div)
         let msg = get_correct_message_div(this);
         msg.classList.remove("d-none")
         disable_buttons(answer_div);
+        if (get_cur_level() > 1) {
+            let question_timer = document.querySelector(`#question-${currQuest} .question-timer`)
+            runTimer(question_timer, currQuest);
+        }
     } else {
         this.classList.add("clicked")
         let answer_div = get_answer_div(this)
@@ -78,7 +141,19 @@ function click_correct_answer() {
 }
 
 function hint_50_50() {
-    console.log("no :P")
+    let wrong_answers_array = document.querySelectorAll(`#question-${currQuest} .wrong-button`);
+    let wrong_answer_enabled = Math.floor(Math.random(3));
+    console.log(wrong_answer_enabled)
+    for (let i = 0; i < wrong_answers_array.length; i++) {
+        if (i != wrong_answer_enabled) {
+            wrong_answers_array[i].disabled = true;
+        }
+    }
+    document.getElementsByClassName("fifty")[0].disabled = true;
+}
+
+function hint_time() {
+
 }
 
 function hint_spectators() {
@@ -131,6 +206,7 @@ function click_wrong_answer() {
     let answer_div = get_answer_div(this)
     let question_number = get_question_number(this)
     document.getElementById("lose_final_score").value = get_score(question_number)
+    document.getElementById("reason").value = "Answer"
     document.getElementById("lose_correct_answers").value = parseInt(get_cur_level())*3 + parseInt(question_number)-1;
     document.getElementById("lose_form").submit()
     let msg = get_wrong_message_div(this);
@@ -139,7 +215,7 @@ function click_wrong_answer() {
 }
 
 function get_question_number(html_element) {
-    return parseInt(html_element.parentNode.parentNode.getAttribute("question-number"))
+    return parseInt(html_element.parentNode.parentNode.parentNode.getAttribute("question-number"))
 }
 
 function get_answer_div(html_element) {
