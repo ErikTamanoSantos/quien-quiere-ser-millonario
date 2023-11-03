@@ -16,6 +16,7 @@ h3 { font-family: 'Inter', sans-serif; }
 :root {
     --rosita: #eebbc3;
     --rosita-hover: #e69aa6;
+    --rosita-disabled: #bd8080;
     --azul-claro: #d4d8f0;
     --azul: #b8c1ec;
     --gris: #232946;
@@ -24,6 +25,8 @@ h3 { font-family: 'Inter', sans-serif; }
     --amarillo-oscuro: #fabf5b;
     --verde: #4eb653;
     --rojo: #f16061;
+    --rojo-filter: invert(47%) sepia(57%) saturate(656%) hue-rotate(311deg) brightness(96%) contrast(95%);
+    --gris-filter: invert(57%) sepia(1%) saturate(0%) hue-rotate(166deg) brightness(89%) contrast(83%);
 }
 
 * {
@@ -329,6 +332,21 @@ section.how-to-play > h1 {
 
 /* game.php */
 
+.comodines button:disabled {
+    cursor: not-allowed;
+}
+
+.comodines button:disabled:hover {
+    background-color: transparent;
+}
+
+.comodines button:disabled svg {
+    filter: var(--rojo-filter);
+}
+
+.comodines .add-time.unavailable {
+    filter: var(--gris-filter)
+}
 .hidden-question {
     display: none !important
 }
@@ -427,6 +445,18 @@ section.how-to-play > h1 {
     background-color: var(--rosita-hover);
 }
 
+.answer-container button:disabled {
+    height: 80px;
+    margin: 5px;
+    background-color: var(--rosita-disabled);
+    color: var(--gris);
+    border: solid 4px var(--gris-oscuro);
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    transition: background-color .3s linear;
+    cursor: not-allowed !important;
+}
+
 .answer-container button:nth-child(1) {
     border-radius: 16px 0 0 0 ;
 }
@@ -444,19 +474,11 @@ section.how-to-play > h1 {
 }
 
 .correct-button:disabled {
-    background-color: var(--verde);
+    background-color: var(--verde) !important;
 }
 
 .wrong-button.clicked {
-    background-color: var(--rojo);
-}
-
-.correct-button:disabled:hover {
-    background-color: var(--verde);
-}
-
-.wrong-button.clicked:hover {
-    background-color: var(--rojo);
+    background-color: var(--rojo) !important;
 }
 
 .message-container {
