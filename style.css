@@ -561,10 +561,40 @@ section.how-to-play > h1 {
 }
 
 .game-info > #reloj {
+    width: 100px;
     text-align: center;
     color: var(--azul-claro);
     font-family: "clock";
     font-size: 60px;
+}
+
+.comodines { 
+    width: 200px; 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.comodines button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.hint-disabled {
+    background-color: var(--rojo);
+    cursor: not-allowed;
+}
+
+.comodines button:hover {
+    background-color: var(--gris);
 }
 
 /* ranking .php */

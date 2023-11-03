@@ -1,11 +1,14 @@
 const correct_audio = new Audio('audios/correct.mp3');
 const fail_audio = new Audio('audios/fail.mp3');
+let currQuest = 0;
 
 addEventListener('load', init);
 function init() {
     document.getElementsByTagName("nav")[0].classList.remove("d-none")
     document.getElementsByTagName("main")[0].classList.remove("d-none")
     document.getElementsByTagName("noscript")[0].classList.add("d-none")
+    document.querySelector(".fifty").addEventListener('click', hint_50_50);
+    document.querySelector(".public").addEventListener('click', hint_spectators);
 
     let correct_buttons = document.getElementsByClassName("correct-button");
     for (let i = 0; i < correct_buttons.length; i++) {
@@ -113,6 +116,7 @@ function runTimer(timerElement) {
 
 
 function click_correct_answer() {
+    currQuest++;
     correct_audio.play();
     let question_number = get_question_number(this)
     if (question_number < 2) {
@@ -133,6 +137,36 @@ function click_correct_answer() {
             document.getElementById("final_score").value = get_score(question_number, true)
         }
     }
+}
+
+function hint_50_50() {
+    console.log("no :P")
+}
+
+function hint_spectators() {
+    const activeQuestion = getActiveQuestion();
+
+    var options = {
+        chart: {
+          type: 'line'
+        },
+        series: [{
+          name: 'sales',
+          data: [30,40,35,50,49,60,70,91,125]
+        }],
+        xaxis: {
+          categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+        }
+      }
+      
+      var chart = new ApexCharts(document.querySelector("#spectators-chart"), options);
+      
+      chart.render();
+}
+
+function getActiveQuestion() {
+    const questContainers = document.getElementsByClassName('question-container');
+    return questContainers[currQuest];
 }
 
 function click_wrong_answer() {
