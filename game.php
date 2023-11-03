@@ -13,6 +13,23 @@
         <input type="hidden" name="correct_answers" id="lose_correct_answers" value="0">
         <input type="hidden" name="game_lost" id="game_lost" value="1">
     </form>
+    <div class="modal spectators-modal">
+        <section class="modal-content spectators-content">
+            <div class="modal-content-top-row">
+                <button class="close-modal"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 10l4 4m0 -4l-4 4"></path><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"></path></svg></button>
+            </div>
+            <div class="modal-content-bottom-row">
+                <h3>El público está votando...</h3>
+                <div id="spectators-chart"></div>
+            </div>
+        </section>
+    
+        <section class="modal-content spectators-sms">
+            <h3>Vota cual crees que es la respuesta correcta</h3>
+            <p>Llama al +34 937 89 06 XX para votar por una respuesta|O bien envia la respuesta en mayúsculas al 25315</p> <!-- todos los textos de enviar "x" al sms y/o llamar -->
+            <span class="modal-vote-sign"></span>
+        </section>
+    </div>
     <nav class="game-info d-none">
         <?php    
             session_start();
@@ -37,17 +54,12 @@
         </span>
 
         <?php
-        
-            echo '<span id="cur_level" value="'.(!isset($_SESSION['cur_level']) ? '1' : $_SESSION['cur_level']).'">'. (!isset($_SESSION['cur_level']) ? $_SESSION["jsonTexts"]["game"]['cur_level'].'1' : $_SESSION["jsonTexts"]["game"]['cur_level'].$_SESSION['cur_level']) .'</span>';
+            echo '<span id="cur_level" value="'. (!isset($_SESSION['cur_level']) ? '1' : $_SESSION['cur_level']).'">'. (!isset($_SESSION['cur_level']) ? $_SESSION["jsonTexts"]["game"]['cur_level'].'1' : $_SESSION["jsonTexts"]["game"]['cur_level'].$_SESSION['cur_level']) .'</span>';
         ?>
     </nav>
+
+
     <main class="main-slider d-none">
-        <section class="modal spectators-modal">
-                <div class="modal-content spectators-content">
-                    <h3>El publico está votando...</h3>
-                    <div id="spectators-chart"></div>
-                </div>
-        </section>
         <?php 
         //echo $_SESSION['cur_level'];
         //$_SESSION["idioma"] == "ca" ? "catalan" : ($_SESSION["idioma"] == "es" ? "spanish" : "english")
@@ -193,7 +205,7 @@
             echo "<h1>". $_SESSION["jsonTexts"]["game"]["level_completed"] ."</h1>";
             echo "<input type='submit' value='". $_SESSION["jsonTexts"]["game"]["next_level"] ."'>";
             $next_level = $_SESSION['cur_level']+1;
-            echo "<input type='hidden' name='clock' value=''>";     //! Aquí está el intento de POST...
+            echo "<input type='hidden' name='clock' value=''>";
             echo "<input type='hidden' name='cur_level' value='".$next_level."'>";
             echo "</form>";
         }
@@ -204,5 +216,7 @@
             <h2><?php echo $_SESSION["jsonTexts"]["script_disabled"] ?></h2>
         </div>
     </noscript>
+    <script src="dist/apexcharts.min.js"></script>
+    <link rel="stylesheet" href="dist/apexcharts.css">
 </body>
 </html>

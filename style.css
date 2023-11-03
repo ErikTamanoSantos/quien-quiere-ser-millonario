@@ -532,6 +532,7 @@ section.how-to-play > h1 {
 
 .comodines { 
     width: 200px; 
+    gap: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -698,4 +699,85 @@ section.how-to-play > h1 {
 
 .disabled-script h2 {
     font-family: 'inter', sans-serif;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, .3);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #121629;
+    border: 3px solid black;
+    border-radius: 15px;
+    padding: 20px 20px;
+    width: 100%;
+}
+
+.modal-content-top-row {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.modal-content-bottom-row {
+    display: grid;
+    place-content: center;
+}
+
+.modal-content:first-child {
+    margin-top: 4vh;
+    height: 60vh;
+    width: 80vw;
+}
+
+.modal-content:last-child {
+    margin-bottom: 4vh;
+    height: 10vh;
+    width: 80vw;
+}
+
+.modal-content-bottom-row h3 {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    font-size: 2vw;
+    color: var(--azul-claro);
+    font-family: 'Inter';
+}
+
+.apexcharts-menu-icon { display: none; }
+
+.close-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.close-modal svg {
+    color: white;
+    width: 45px;
+    height: 45px;
+    transition: color .3s linear;
+}
+
+.close-modal:hover svg {
+    color: var(--rojo);
+    transition: color .3s linear;
 }

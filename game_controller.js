@@ -83,23 +83,41 @@ function hint_50_50() {
 
 function hint_spectators() {
     const activeQuestion = getActiveQuestion();
+    console.log(activeQuestion);
 
-    var options = {
+    const activeAnswers =
+    document.querySelector(".modal").style.display = "flex";
+
+    options = {
         chart: {
-          type: 'line'
+            type: 'bar',
+            width: '100%'
         },
         series: [{
-          name: 'sales',
-          data: [30,40,35,50,49,60,70,91,125]
-        }],
-        xaxis: {
-          categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
-        }
-      }
-      
-      var chart = new ApexCharts(document.querySelector("#spectators-chart"), options);
-      
-      chart.render();
+            data: [{
+            x: 'category A',
+            y: Math.floor(Math.random()*13+3)
+            }, {
+            x: 'category B',
+            y: Math.floor(Math.random()*13+3)
+            }, {
+            x: 'category C',
+            y: Math.floor(Math.random()*13+3)
+            }, {
+            x: 'category C',
+            y: Math.floor(Math.random()*13+3)
+            }]
+        }]
+    }
+    
+    var chart = new ApexCharts(document.querySelector("#spectators-chart"), options);
+    
+    chart.render();
+
+    document.querySelector(".close-modal").addEventListener('click', () => {
+        document.querySelector(".public").disabled = true;
+        document.querySelector(".modal").style.display = "none";
+    });
 }
 
 function getActiveQuestion() {
