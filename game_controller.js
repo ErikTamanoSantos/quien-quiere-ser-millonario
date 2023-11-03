@@ -16,12 +16,40 @@ function init() {
         wrong_buttons[i].addEventListener('click', click_wrong_answer);
     }
 
+    let question_timer = document.querySelector("#question-0 .question-timer")
+    runTimer(question_timer);
+
+    
+
+    createClock();
+    
+}
+
+
+function createClock() {
     let startTime = 0;
     let pauseTime = 0;
     let timeRunning = false;
     let interval;
     let wannaRestart = true;
+    
+    if (document.getElementById('reloj').innerText !== '0:00') {
+        let tiempoPasado = document.getElementById('reloj').innerText;
+        let minutos_segundos = tiempoPasado.split(':');
+        startTime = Date.now() - (minutos_segundos[0] * 60000 + minutos_segundos[1] * 1000);
+        timeRunning = true;
+        wannaRestart = false;
+        interval = setInterval(showTime, 1000);
+    }
 
+    if (!timeRunning && wannaRestart) {
+        startTime = Date.now();
+        timeRunning = true;
+        wannaRestart = false;
+        interval = setInterval(showTime, 1000);
+    }
+
+    
     function showTime() {
         const currentTime = (timeRunning ? Date.now() : pauseTime) - startTime;
         const seconds = Math.floor(currentTime / 1000);
@@ -29,21 +57,55 @@ function init() {
         document.getElementById("reloj").innerText = minutes + ":" + (seconds % 60).toString().padStart(2, '0');
         document.querySelector('#next-level-container input[name="clock"]').setAttribute('value', document.getElementById('reloj').innerText);
     }
+
+    showTime();
+}
+
+function runTimer(timerElement) {
+    console.log(timerElement)
+    let startTime = 0;
+    let pauseTime = 0;
+    let timeRunning = false;
+    let interval;
+    let wannaRestart = true;
     
     if (document.getElementById('reloj').innerText !== '0:00') {
         let tiempoPasado = document.getElementById('reloj').innerText;
         let minutos_segundos = tiempoPasado.split(':');
         startTime = Date.now() - (minutos_segundos[0] * 60000 + minutos_segundos[1] * 1000);
-        interval = setInterval(showTime, 1000);
         timeRunning = true;
         wannaRestart = false;
+        interval = setInterval(showTime, 1000);
     }
 
     if (!timeRunning && wannaRestart) {
         startTime = Date.now();
-        interval = setInterval(showTime, 1000);
         timeRunning = true;
         wannaRestart = false;
+        interval = setInterval(showTime, 1000);
+    }
+
+    /*
+    function showTime() {
+        const currentTime = (timeRunning ? Date.now() : pauseTime) - startTime;
+        const seconds = Math.floor(currentTime / 1000);
+        const minutes = Math.floor(seconds / 60);
+        document.getElementById("reloj").innerText = minutes + ":" + (seconds % 60).toString().padStart(2, '0');
+        document.querySelector('#next-level-container input[name="clock"]').setAttribute('value', document.getElementById('reloj').innerText);
+    }
+    */
+
+    function showTime() {
+        if (timeRunning) {
+            const timePassed = (timeRunning ? Date.now() : pauseTime) - startTime;
+            const seconds = Math.floor(timePassed / 1000);
+            const timeRemaining = 10 - seconds;
+            if (timeRemaining == 0) {
+                timeRunning = false;
+            }
+            timerElement.innerText = (timeRemaining % 60).toString().padStart(2, '0');
+        }
+        
     }
 
     showTime();

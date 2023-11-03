@@ -332,6 +332,18 @@ section.how-to-play > h1 {
 .hidden-question {
     display: none !important
 }
+/*
+.timer {
+    background-color: var(--amarillo);
+    border: solid 4px var(--gris-oscuro);
+    border-radius: 16px 16px 0 0;
+    border-bottom: 0;
+    width: 20%;
+    height: 100px;
+}
+*/
+
+
 
 .question-container {
     height: 100vh;
@@ -342,6 +354,32 @@ section.how-to-play > h1 {
     flex-direction: column;
     align-items: center;
     justify-content: end;
+}
+
+.question-inner-container {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.timer {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.timer-tag {
+    font-family: 'Inter', sans-serif;
+}
+
+.question-timer {
+    font-family: 'clock';
+    font-size: 75px;
 }
 
 .question-header {

@@ -105,6 +105,11 @@
         function print_page_from_data($questions_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix, $max_level) {
             $question = key($questions_array[$selected_indexes[0]]);
             echo "<div id='question-0' class='question-container slider' question-number='0'>\n";
+            echo "<div class='question-inner-container'>";
+            echo "<div class='timer'>";
+            echo "<h2 class='timer-tag'>Temps Restant:</h2>";
+            echo "<h2 class='question-timer'>60</h2>";
+            echo "</div>";
             echo "<div class='question-header'>\n";
             echo "<h1>".remove_prefix($question, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix)."</h1>\n";
             echo "</div>\n";
@@ -133,11 +138,17 @@
             echo "<a href='http://localhost:8080'>". $_SESSION["jsonTexts"]["game"]["go_start"] ."</a>\n";
             echo "</div>\n";
             echo "</div>\n";
+            echo "</div>";
             echo "</div>\n";
 
             for ($i = 1; $i < count($selected_indexes); $i++) {
                 $question = key($questions_array[$selected_indexes[$i]]);
                 echo "<div id='question-$i' class='question-container hidden-question slider' question-number='$i'>\n";
+                echo "<div class='question-inner-container'>";
+                echo "<div class='timer'>";
+                echo "<h2 class='timer-tag'>Temps Restant:</h2>";
+                echo "<h2 class='question-timer'>60</h2>";
+                echo "</div>";
                 echo "<div class='question-header'>\n";
                 echo "<h1>".remove_prefix($question, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix)."</h1>";
                 echo "</div>\n";
@@ -166,6 +177,7 @@
                 echo "<a href='http://localhost:8080'>". $_SESSION["jsonTexts"]["game"]["go_start"] ."</a>\n";
                 echo "</div>\n";
                 echo "</div>\n";
+                echo "</div>";
                 echo "</div>\n";
             }
             if ($_SESSION['cur_level'] == $max_level) {
