@@ -21,7 +21,7 @@
             </div>
             <div class="modal-content-bottom-row">
                 <h3>El público está votando...</h3>
-                <div id="spectators-chart"></div>
+                <div id="spectators-chart" class="loader"></div>
             </div>
         </section>
     
