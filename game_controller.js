@@ -160,28 +160,114 @@ function hint_time() {
 }
 
 function hint_spectators() {
-    const activeQuestion = getActiveQuestion();
+    const activeQuestion = getActiveQuestion(); // Get active question
+    console.log(activeQuestion);
 
-    var options = {
+    let activeAnswers = "";
+
+    for (activeQuestionChild of activeQuestion.children) {
+        if (activeQuestionChild.classList.contains("answer-container")) {
+            activeAnswers = activeQuestionChild; // Conseguir preguntas...
+            break;
+        }
+    }
+
+    document.querySelector(".modal").style.display = "flex";
+
+    let messages = document.querySelector(".spectators-sms p").innerText;
+    messages = messages.split("|");
+
+    document.querySelector(".spectators-sms p").innerText = messages[0];
+
+    options = {
         chart: {
-          type: 'line'
+            type: 'bar',
+            width: '100%'
         },
         series: [{
-          name: 'sales',
-          data: [30,40,35,50,49,60,70,91,125]
-        }],
-        xaxis: {
-          categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
-        }
-      }
-      
-      var chart = new ApexCharts(document.querySelector("#spectators-chart"), options);
-      
-      chart.render();
+            data: [{
+            x: 'category A',
+            y: Math.floor(Math.random()*13+3)
+            }, {
+            x: 'category B',
+            y: Math.floor(Math.random()*13+3)
+            }, {
+            x: 'category C',
+            y: Math.floor(Math.random()*13+3)
+            }, {
+            x: 'category C',
+            y: Math.floor(Math.random()*13+3)
+            }]
+        }]
+    }
+
+    const voting = new Audio("/audios/voting.mp3");
+    voting.loop = false;
+    voting.play();
+
+    let contador;
+
+    setTimeout(() => {
+        document.querySelector(".spectators-sms p").style.opacity = 0;
+        setTimeout(() => {
+            document.querySelector(".spectators-sms p").innerText = messages[1];
+            document.querySelector(".spectators-sms p").style.opacity = 1;
+        }, 300);
+    }, 5000);
+
+    setTimeout(() => {
+        document.querySelector(".modal").style.justifyContent = "center";
+        document.querySelector(".spectators-content").style.height = "80vh";
+        document.querySelector(".spectators-sms").style.display = "none";
+    }, 10000);
+    
+    setTimeout(() => {
+        document.querySelector(".modal-content-bottom-row h3").innerText = "Procesando votos..."
+    }, 12000);
+
+    setTimeout(() => {
+        voting.pause();
+        const showVotes = new Audio("/audios/show-votes.mp3");
+        showVotes.play();
+        contador = document.querySelector(".loader");
+        contador.classList.remove("loader");
+        contador.classList.add("modal-cont");
+        contador.style.color = "#b8c1ec";
+        contador.style.fontSize = "7vw";
+        contador.innerText = "3";
+    }, 13000);
+
+    setTimeout(() => {
+        document.querySelector(".modal-cont");
+        contador.style.color = "#eebbc3";
+        contador.innerText = "2";
+    }, 14000);
+
+    setTimeout(() => {
+        contador = document.querySelector(".modal-cont");
+        contador.style.color = "#fabf5b";
+        contador.innerText = "1";
+    }, 15000);
+
+    setTimeout(() => {
+        contador.innerText = null;
+    }, 16000);
+
+    
+
+
+    // var chart = new ApexCharts(document.querySelector("#spectators-chart"), options);
+    
+    // chart.render();
+
+    document.querySelector(".close-modal").addEventListener('click', () => {
+        document.querySelector(".public").disabled = true;
+        document.querySelector(".modal").style.display = "none";
+    });
 }
 
 function getActiveQuestion() {
-    const questContainers = document.getElementsByClassName('question-container');
+    const questContainers = document.getElementsByClassName('question-inner-container');
     return questContainers[currQuest];
 }
 
