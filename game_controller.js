@@ -10,6 +10,7 @@ function init() {
     document.getElementsByTagName("main")[0].classList.remove("d-none")
     document.getElementsByTagName("noscript")[0].classList.add("d-none")
     document.querySelector(".fifty").addEventListener('click', hint_50_50);
+    document.querySelector(".add-time").addEventListener('click', hint_time);
     document.querySelector(".public").addEventListener('click', hint_spectators);
 
     let correct_buttons = document.getElementsByClassName("correct-button");
@@ -72,7 +73,7 @@ function runTimer(timerElement, questionNumber) {
     let startTime = Date.now();
     let pauseTime = 0;
     let timeRunning = true;
-    let interval = setInterval(showTime, 1000);;
+    let interval = setInterval(showTime, 1000);
     let wannaRestart = false;
 
     /*
@@ -93,7 +94,7 @@ function runTimer(timerElement, questionNumber) {
             }
             const timePassed = (timeRunning ? Date.now() : pauseTime) - startTime;
             const seconds = Math.floor(timePassed / 1000);
-            const timeRemaining = 60 - seconds;
+            const timeRemaining = maxTime - seconds;
             if (timeRemaining == 0) {
                 document.getElementById("reason").value = "Timeout"
                 document.getElementById("lose_form").submit()
@@ -153,7 +154,9 @@ function hint_50_50() {
 }
 
 function hint_time() {
-
+    extraTime = true;
+    let timerElement = document.querySelector(`#question-${currQuest} .question-timer`)
+    timerElement.innerText = parseInt(timerElement.innerText) + 20
 }
 
 function hint_spectators() {

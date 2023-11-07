@@ -36,6 +36,7 @@
             "save_msg": "Data saved!"
         },
         "lose": {
+            "lose_bad_ending": "You can't lose if you haven't even tried!",
             "you_failed": "You've failed!",
             "time_out": "You ran out of time!",
             "you_know": "Do you know what it means..?",
@@ -87,6 +88,7 @@
             "save_msg": "Datos guardados!"
         },
         "lose": {
+            "lose_bad_ending": "¡No puedes perder sin haber jugado!",
             "you_failed": "¡Has fallado!",
             "time_out": "¡Te has quedado sin tiempo!",
             "you_know": "¿Sabes qué significa eso...?",
@@ -138,6 +140,7 @@
             "save_msg": "Dades guardades!"
         },
         "lose": {
+            "lose_bad_ending": "No pots perdre sense jugar!",
             "you_failed": "Has fallat!",
             "time_out": "T'has quedat sense temps!",
             "you_know": "Saps què vol dir...?",

@@ -374,6 +374,11 @@ section.how-to-play > h1 {
     justify-content: end;
 }
 
+.question-container img {
+    max-height: 350px;
+    height: 350px;
+}
+
 .question-inner-container {
     height: 50%;
     width: 100%;
@@ -396,6 +401,7 @@ section.how-to-play > h1 {
 }
 
 .question-timer {
+    font-weight: 300;
     font-family: 'clock';
     font-size: 75px;
 }
@@ -680,11 +686,31 @@ section.how-to-play > h1 {
 
 
 /** lose.php */
+
+#bad-lose {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--rojo);
+    height: 35vh;
+    padding: 30px;
+}
+
 .main-lose {
+    animation-name: win-transition-animation;
+    animation-duration: 2s;
+    animation-iteration-count: initial;
+    background-color: var(--amarillo);
+    height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: var(--gris-oscuro);
+    text-align: center;
+
 }
 
 .first-lose {

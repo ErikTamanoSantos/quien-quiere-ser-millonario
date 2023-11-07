@@ -54,6 +54,8 @@
         //$_SESSION["idioma"] == "ca" ? "catalan" : ($_SESSION["idioma"] == "es" ? "spanish" : "english")
         
         $file = fopen("preguntes/".$gameLang."_".$_SESSION['cur_level'].".txt", "r");
+        $file_dup = fopen("preguntes/".$gameLang."_".$_SESSION['cur_level'].".txt", "r");
+        $eng_file = fopen("preguntes/english_".$_SESSION['cur_level'].".txt", "r");
         $question_prefix = "* ";
         $correct_answer_prefix = "+ ";
         $wrong_answer_prefix = "- ";
@@ -64,9 +66,10 @@
         $selected_indexes = [];
 
         $questions_array = get_questions_from_file($file, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix);
+        $images_array = get_images_array($file_dup, $eng_file, $question_prefix);
         $selected_indexes = get_array_of_random_numbers($questions_amount, 0, count($questions_array)-1);
 
-        print_page_from_data($questions_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix, $max_level);
+        print_page_from_data($questions_array, $images_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix, $max_level);
 
         
         function get_questions_from_file($file, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix) {
@@ -118,9 +121,12 @@
             }
         }
 
-        function print_page_from_data($questions_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix, $max_level) {
+        function print_page_from_data($questions_array, $images_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix, $max_level) {
             $question = key($questions_array[$selected_indexes[0]]);
             echo "<div id='question-0' class='question-container slider' question-number='0'>\n";
+            if ($images_array[$question]) {
+                echo "<img src='imgs/fotos_preguntas/".$_SESSION["cur_level"]."/".$images_array[$question]."'>";
+            }
             echo "<div class='question-inner-container'>";
             echo "<div class='timer "; 
             if ($_SESSION["cur_level"] == 1) {
@@ -164,6 +170,9 @@
             for ($i = 1; $i < count($selected_indexes); $i++) {
                 $question = key($questions_array[$selected_indexes[$i]]);
                 echo "<div id='question-$i' class='question-container hidden-question slider' question-number='$i'>\n";
+                if ($images_array[$question]) {
+                    echo "<img src='imgs/fotos_preguntas/".$_SESSION["cur_level"]."/".$images_array[$question]."'>";
+                }
                 echo "<div class='question-inner-container'>";
                 echo "<div class='timer "; 
                 if ($_SESSION["cur_level"] == 1) {
@@ -220,6 +229,31 @@
             echo "<input type='hidden' name='public-disabled' value='0'>";
             echo "<input type='hidden' name='cur_level' value='".$next_level."'>";
             echo "</form>";
+        }
+
+        function get_images_array($file, $eng_file, $question_prefix) {
+            $images_array = [];
+            while (true) {
+                $file_content = fgets($file);
+                $eng_file_content = fgets($eng_file);
+                if ($file_content) {
+                    if (str_starts_with($file_content, $question_prefix)) {
+                        
+                        $dir = new DirectoryIterator(dirname("imgs/fotos_preguntas/".$_SESSION["cur_level"]."/*"));
+                        
+                        foreach ($dir as $fileinfo) {
+                            if (!$fileinfo->isDot()) {
+                                $imageName = $fileinfo->getFilename();
+                                if (str_contains($eng_file_content, explode(".", $imageName)[0])) {
+                                    $images_array[$file_content] = $imageName;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    return $images_array;
+                }
+            }
         }
     ?>
     </main>
