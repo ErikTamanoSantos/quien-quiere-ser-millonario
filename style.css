@@ -408,6 +408,7 @@ section.how-to-play > h1 {
 }
 
 .question-container h1 {
+    padding: 10px 20px;
     background-color: var(--amarillo);
     border: solid 4px var(--gris-oscuro);
     border-radius: 16px;
@@ -929,3 +930,5 @@ section.how-to-play > h1 {
     transition: opacity .3s;
     font-size: 18px;
 }
+
+tspan { color: white!important; }

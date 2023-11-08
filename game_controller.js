@@ -199,16 +199,17 @@ function hint_spectators() {
     let otherAnswers = [];
 
     do { bigPublicAnswer = Math.floor(Math.random() * 61) } 
-    while (bigPublicAnswer >= 50);
+    while (bigPublicAnswer < 50);
     
     puntosRestantes = 100 - bigPublicAnswer;
     let vueltas = 0;
     for (let i = 0; i < 3; i++) {
-        if (vueltas = 2) otherAnswers.push(puntosRestantes);
+        if (vueltas === 2) otherAnswers.push(puntosRestantes);
         else {
-            nuevoNumero = Math.random()*puntosRestantes-9;
+            nuevoNumero = Math.floor(Math.random()*puntosRestantes);
             puntosRestantes -= nuevoNumero;
             otherAnswers.push(nuevoNumero);
+            vueltas++;
         }
     }
 
@@ -221,7 +222,9 @@ function hint_spectators() {
         if (i !== correctAnswerIndex) {
             dataNumber = otherAnswers[otherAnswersIndexes];
             otherAnswersIndexes++;
-        } else dataNumber = bigPublicAnswer;
+        } else  {
+            dataNumber = bigPublicAnswer;
+        }
         data.push({
             x: activeAnswers[i].innerText,
             y: dataNumber
