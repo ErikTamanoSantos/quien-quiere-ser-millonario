@@ -235,7 +235,9 @@ function hint_spectators() {
     options = {
         chart: {
             type: 'bar',
-            width: '100%'
+            width: '1500px',
+            height: '300px',
+            foreColor: "#ffffff"
         },
         series: [{
             data: data

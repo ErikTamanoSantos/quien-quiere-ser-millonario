@@ -940,4 +940,7 @@ section.how-to-play > h1 {
     font-size: 18px;
 }
 
-tspan { color: white!important; }
+tspan { 
+    color: white!important; 
+    font-size: 24px;
+}
