@@ -160,47 +160,86 @@ function hint_time() {
 }
 
 function hint_spectators() {
-    const activeQuestion = getActiveQuestion(); // Get active question
-    console.log(activeQuestion);
+    let stillPlayingModal = true;
+    const activeQuestion = getActiveQuestion(); // Conseguir las preguntas de la pregunta actual.
+    let activeAnswers;
 
-    let activeAnswers = "";
-
+    // Conseguir respuestas de la pregunta actual.
     for (activeQuestionChild of activeQuestion.children) {
         if (activeQuestionChild.classList.contains("answer-container")) {
-            activeAnswers = activeQuestionChild; // Conseguir preguntas...
+            activeAnswers = activeQuestionChild.children;
             break;
         }
     }
 
+    //Conseguir respuesta correcta.
+    let correctAnswerIndex = 0;
+    for (answer of activeAnswers) {
+        if (answer.classList.contains("correct-button")) break;
+        correctAnswerIndex++;
+    }
+
+    // Mostrar modal
     document.querySelector(".modal").style.display = "flex";
 
+    // Almaceno los mensajes de la parte de abajo de la modal.
     let messages = document.querySelector(".spectators-sms p").innerText;
     messages = messages.split("|");
 
-    document.querySelector(".spectators-sms p").innerText = messages[0];
+    document.querySelector(".spectators-sms p").innerText = messages[0];    // Muestro solo el primer mensaje.
 
+    // Decidir si la respuesta del público será correcta.
+    const publicoCorrecto = Math.floor(Math.random()*100 + 1) < 80; // true || false
+
+    console.log(activeAnswers);
+
+    let nuevoNumero;
+    let puntosRestantes;
+    let bigPublicAnswer;
+    let otherAnswers = [];
+
+    do { bigPublicAnswer = Math.floor(Math.random() * 61) } 
+    while (bigPublicAnswer >= 50);
+    
+    puntosRestantes = 100 - bigPublicAnswer;
+    let vueltas = 0;
+    for (let i = 0; i < 3; i++) {
+        if (vueltas = 2) otherAnswers.push(puntosRestantes);
+        else {
+            nuevoNumero = Math.random()*puntosRestantes-9;
+            puntosRestantes -= nuevoNumero;
+            otherAnswers.push(nuevoNumero);
+        }
+    }
+
+    // Crear los datos del gráfico de barras.
+    let data = [];
+    let otherAnswersIndexes = 0;
+    let dataNumber;
+
+    for (let i = 0; i < 4; i++) {
+        if (i !== correctAnswerIndex) {
+            dataNumber = otherAnswers[otherAnswersIndexes];
+            otherAnswersIndexes++;
+        } else dataNumber = bigPublicAnswer;
+        data.push({
+            x: activeAnswers[i].innerText,
+            y: dataNumber
+        })
+    }
+
+    // Configuració del gràfic de barres.
     options = {
         chart: {
             type: 'bar',
             width: '100%'
         },
         series: [{
-            data: [{
-            x: 'category A',
-            y: Math.floor(Math.random()*13+3)
-            }, {
-            x: 'category B',
-            y: Math.floor(Math.random()*13+3)
-            }, {
-            x: 'category C',
-            y: Math.floor(Math.random()*13+3)
-            }, {
-            x: 'category C',
-            y: Math.floor(Math.random()*13+3)
-            }]
+            data: data
         }]
     }
-
+    // Creació i configuració dels audios de la modal.
+    const showVotes = new Audio("/audios/show-votes.mp3");
     const voting = new Audio("/audios/voting.mp3");
     voting.loop = false;
     voting.play();
@@ -227,8 +266,7 @@ function hint_spectators() {
 
     setTimeout(() => {
         voting.pause();
-        const showVotes = new Audio("/audios/show-votes.mp3");
-        showVotes.play();
+        if (stillPlayingModal) showVotes.play();
         contador = document.querySelector(".loader");
         contador.classList.remove("loader");
         contador.classList.add("modal-cont");
@@ -251,18 +289,17 @@ function hint_spectators() {
 
     setTimeout(() => {
         contador.innerText = null;
+        var chart = new ApexCharts(document.querySelector("#spectators-chart"), options);
+        chart.render();
     }, 16000);
 
-    
-
-
-    // var chart = new ApexCharts(document.querySelector("#spectators-chart"), options);
-    
-    // chart.render();
-
+    // Tancar la modal, pausant els audios si sonen.
     document.querySelector(".close-modal").addEventListener('click', () => {
+        stillPlayingModal = false;
         document.querySelector(".public").disabled = true;
         document.querySelector(".modal").style.display = "none";
+        if (!voting.paused) voting.pause();
+        if (!showVotes.paused) showVotes.pause();
     });
 }
 
