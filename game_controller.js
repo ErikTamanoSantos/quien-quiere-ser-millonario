@@ -76,16 +76,6 @@ function runTimer(timerElement, questionNumber) {
     let interval = setInterval(showTime, 1000);
     let wannaRestart = false;
 
-    /*
-    function showTime() {
-        const currentTime = (timeRunning ? Date.now() : pauseTime) - startTime;
-        const seconds = Math.floor(currentTime / 1000);
-        const minutes = Math.floor(seconds / 60);
-        document.getElementById("reloj").innerText = minutes + ":" + (seconds % 60).toString().padStart(2, '0');
-        document.querySelector('#next-level-container input[name="clock"]').setAttribute('value', document.getElementById('reloj').innerText);
-    }
-    */
-
     function showTime() {
         if (timeRunning && questionFlags[questionNumber]) {
             let maxTime = 60;
