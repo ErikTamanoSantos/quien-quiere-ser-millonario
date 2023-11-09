@@ -158,6 +158,7 @@ function hint_time() {
     extraTime = true;
     let timerElement = document.querySelector(`#question-${currQuest} .question-timer`);
     timerElement.innerText = parseInt(timerElement.innerText) + 20;
+    ocument.getElementsByClassName("add-time")[0].disabled = true;
     document.getElementById("add-time-disabled").value = "1";
 }
 
