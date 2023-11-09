@@ -360,7 +360,7 @@ section.how-to-play > h1 {
 }
 
 .comodines .add-time.unavailable {
-    filter: var(--gris-filter)
+    filter: var(--gris-filter)!important;
 }
 .hidden-question {
     display: none !important

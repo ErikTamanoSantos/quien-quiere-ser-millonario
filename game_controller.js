@@ -1,5 +1,7 @@
 const correct_audio = new Audio('audios/correct.mp3');
 const fail_audio = new Audio('audios/fail.mp3');
+const showVotes = new Audio("/audios/show-votes.mp3");
+const voting = new Audio("/audios/voting.mp3");
 let currQuest = 0;
 let questionFlags = [true, false, false];
 let extraTime = false;
@@ -8,6 +10,8 @@ let hintDelay = 0;
 
 addEventListener('load', init);
 function init() {
+    document.querySelectorAll(".disabled").forEach((comodin) => comodin.disabled = true);
+
     document.getElementsByTagName("nav")[0].classList.remove("d-none")
     document.getElementsByTagName("main")[0].classList.remove("d-none")
     document.getElementsByTagName("noscript")[0].classList.add("d-none")
@@ -147,13 +151,14 @@ function hint_50_50() {
         }
     }
     document.getElementsByClassName("fifty")[0].disabled = true;
+    document.getElementById("50-disabled").value = "1";
 }
 
 function hint_time() {
     extraTime = true;
-    let timerElement = document.querySelector(`#question-${currQuest} .question-timer`)
-    timerElement.innerText = parseInt(timerElement.innerText) + 20
-    document.getElementsByClassName("add-time")[0].disabled = true;
+    let timerElement = document.querySelector(`#question-${currQuest} .question-timer`);
+    timerElement.innerText = parseInt(timerElement.innerText) + 20;
+    document.getElementById("add-time-disabled").value = "1";
 }
 
 function hint_spectators() {
@@ -179,6 +184,9 @@ function hint_spectators() {
 
     // Mostrar modal
     document.querySelector(".modal").style.display = "flex";
+
+    let titles = document.querySelector(".spectators-content h3").innerText.split("|");
+    document.querySelector(".spectators-content h3").innerText = titles[0];
 
     // Almaceno los mensajes de la parte de abajo de la modal.
     let messages = document.querySelector(".spectators-sms p").innerText;
@@ -214,19 +222,52 @@ function hint_spectators() {
     // Crear los datos del gráfico de barras.
     let data = [];
     let otherAnswersIndexes = 0;
-    let dataNumber;
+    let dataNumber = NaN;
+    let willChange = false;
 
-    for (let i = 0; i < 4; i++) {
-        if (i !== correctAnswerIndex) {
-            dataNumber = otherAnswers[otherAnswersIndexes];
-            otherAnswersIndexes++;
-        } else  {
-            dataNumber = bigPublicAnswer;
+
+    if (publicoCorrecto) {
+        for (let i = 0; i < 4; i++) {
+            if (i !== correctAnswerIndex) {
+                dataNumber = otherAnswers[otherAnswersIndexes];
+                otherAnswersIndexes++;
+            } else  {
+                dataNumber = bigPublicAnswer;
+            }
+            data.push({
+                x: activeAnswers[i].innerText,
+                y: dataNumber
+            });
         }
-        data.push({
-            x: activeAnswers[i].innerText,
-            y: dataNumber
-        })
+    } else {
+        for (let i = 0; i < 4; i++) {
+            if (i === correctAnswerIndex) {
+                dataNumber = bigPublicAnswer;
+                willChange = true;
+            } else {
+                dataNumber = otherAnswers[otherAnswersIndexes];
+                otherAnswersIndexes++;
+            }
+            data.push({
+                x: activeAnswers[i].innerText,
+                y: dataNumber
+            });
+        }
+
+        if (willChange && correctAnswerIndex === 0) {
+            let posicionCambiar = Math.floor(Math.random()*3+1);
+            let aux = data[posicionCambiar].y;
+            data[posicionCambiar].y = data[0].y;
+            data[0].y = aux;
+        } else if (willChange && correctAnswerIndex !== 0) {
+            let posicionCambiar;
+            do {posicionCambiar = Math.floor(Math.random()*3)}
+            while (posicionCambiar === correctAnswerIndex);
+
+            let aux = data[posicionCambiar].y;
+            data[posicionCambiar].y = data[correctAnswerIndex].y;
+            data[correctAnswerIndex].y = aux;
+        }
     }
 
     // Configuració del gràfic de barres.
@@ -240,10 +281,9 @@ function hint_spectators() {
         series: [{
             data: data
         }]
-    }
+    };
     // Creació i configuració dels audios de la modal.
-    const showVotes = new Audio("/audios/show-votes.mp3");
-    const voting = new Audio("/audios/voting.mp3");
+    
     voting.loop = false;
     voting.play();
 
@@ -264,7 +304,7 @@ function hint_spectators() {
     }, 10000);
     
     setTimeout(() => {
-        document.querySelector(".modal-content-bottom-row h3").innerText = "Procesando votos..."
+        document.querySelector(".modal-content-bottom-row h3").innerText = titles[1];
     }, 12000);
 
     setTimeout(() => {
@@ -299,6 +339,7 @@ function hint_spectators() {
     // Tancar la modal, pausant els audios si sonen.
     document.querySelector(".close-modal").addEventListener('click', () => {
         stillPlayingModal = false;
+        document.getElementById("public-disabled").value = "1";
         document.querySelector(".public").disabled = true;
         document.querySelector(".modal").style.display = "none";
         if (!voting.paused) voting.pause();
