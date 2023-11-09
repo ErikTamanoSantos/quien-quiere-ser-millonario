@@ -642,6 +642,11 @@ section.how-to-play > h1 {
     background-color: var(--azul);
 }
 
+#ranking-div h1 {
+    margin-bottom: 40px;
+    font-size: 100px;
+}
+
 #ranking-div table {
     width: 40%;
     table-layout: auto;

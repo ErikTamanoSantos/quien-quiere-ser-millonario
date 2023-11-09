@@ -136,7 +136,7 @@
         function print_page_from_data($questions_array, $images_array, $selected_indexes, $question_prefix, $correct_answer_prefix, $wrong_answer_prefix, $max_level) {
             $question = key($questions_array[$selected_indexes[0]]);
             echo "<div id='question-0' class='question-container slider' question-number='0'>\n";
-            if ($images_array[$question]) {
+            if (isset($images_array[$question])) {
                 echo "<img src='imgs/fotos_preguntas/".$_SESSION["cur_level"]."/".$images_array[$question]."'>";
             }
             echo "<div class='question-inner-container'>";
@@ -182,7 +182,7 @@
             for ($i = 1; $i < count($selected_indexes); $i++) {
                 $question = key($questions_array[$selected_indexes[$i]]);
                 echo "<div id='question-$i' class='question-container hidden-question slider' question-number='$i'>\n";
-                if ($images_array[$question]) {
+                if (isset($images_array[$question])) {
                     echo "<img src='imgs/fotos_preguntas/".$_SESSION["cur_level"]."/".$images_array[$question]."'>";
                 }
                 echo "<div class='question-inner-container'>";

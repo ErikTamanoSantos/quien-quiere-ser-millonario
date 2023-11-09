@@ -3,6 +3,8 @@ const fail_audio = new Audio('audios/fail.mp3');
 let currQuest = 0;
 let questionFlags = [true, false, false];
 let extraTime = false;
+let publicHintOnScreen = false;
+let hintDelay = 0;
 
 addEventListener('load', init);
 function init() {
@@ -58,11 +60,15 @@ function createClock() {
 
     
     function showTime() {
-        const currentTime = (timeRunning ? Date.now() : pauseTime) - startTime;
-        const seconds = Math.floor(currentTime / 1000);
-        const minutes = Math.floor(seconds / 60);
-        document.getElementById("reloj").innerText = minutes + ":" + (seconds % 60).toString().padStart(2, '0');
-        document.querySelector('#next-level-container input[name="clock"]').setAttribute('value', document.getElementById('reloj').innerText);
+        if (!publicHintOnScreen) {
+            const currentTime = (timeRunning ? Date.now() : pauseTime) - (startTime + hintDelay*1000);
+            const seconds = Math.floor(currentTime / 1000);
+            const minutes = Math.floor(seconds / 60);
+            document.getElementById("reloj").innerText = minutes + ":" + (seconds % 60).toString().padStart(2, '0');
+            document.querySelector('#next-level-container input[name="clock"]').setAttribute('value', document.getElementById('reloj').innerText);
+        } else {
+            hintDelay++
+        }
     }
 
     showTime();
@@ -77,12 +83,12 @@ function runTimer(timerElement, questionNumber) {
     let wannaRestart = false;
 
     function showTime() {
-        if (timeRunning && questionFlags[questionNumber]) {
+        if (timeRunning && questionFlags[questionNumber] && !publicHintOnScreen) {
             let maxTime = 60;
             if (extraTime) {
                 maxTime += 20;
             }
-            const timePassed = (timeRunning ? Date.now() : pauseTime) - startTime;
+            const timePassed = (timeRunning ? Date.now() : pauseTime) - (startTime + hintDelay*1000);
             const seconds = Math.floor(timePassed / 1000);
             const timeRemaining = maxTime - seconds;
             if (timeRemaining == 0) {
@@ -147,9 +153,11 @@ function hint_time() {
     extraTime = true;
     let timerElement = document.querySelector(`#question-${currQuest} .question-timer`)
     timerElement.innerText = parseInt(timerElement.innerText) + 20
+    document.getElementsByClassName("add-time")[0].disabled = true;
 }
 
 function hint_spectators() {
+    publicHintOnScreen = true;
     let stillPlayingModal = true;
     const activeQuestion = getActiveQuestion(); // Conseguir las preguntas de la pregunta actual.
     let activeAnswers;
@@ -295,6 +303,7 @@ function hint_spectators() {
         document.querySelector(".modal").style.display = "none";
         if (!voting.paused) voting.pause();
         if (!showVotes.paused) showVotes.pause();
+        publicHintOnScreen = false;
     });
 }
 
