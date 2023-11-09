@@ -112,6 +112,8 @@ function click_correct_answer() {
     questionFlags[currQuest] = false
     currQuest++;
     questionFlags[currQuest] = true
+    correct_audio.pause();
+    correct_audio.currentTime = 0;
     correct_audio.play();
     let question_number = get_question_number(this)
     console.log(this)
@@ -335,6 +337,7 @@ function hint_spectators() {
 
     // Mostrar la gràfica!!
     setTimeout(() => {
+        document.querySelector(".modal-content-bottom-row h3").innerText = "";
         contador.innerText = null;
         var chart = new ApexCharts(document.querySelector("#spectators-chart"), options);
         chart.render();
