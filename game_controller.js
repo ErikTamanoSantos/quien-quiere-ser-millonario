@@ -290,6 +290,7 @@ function hint_spectators() {
 
     let contador;
 
+    // Mostrar primer missatge (trucar per votar) //! 5s
     setTimeout(() => {
         document.querySelector(".spectators-sms p").style.opacity = 0;
         setTimeout(() => {
@@ -298,16 +299,19 @@ function hint_spectators() {
         }, 300);
     }, 5000);
 
+    // Mostrar segon missatge (sms per votar) //! 5s
     setTimeout(() => {
         document.querySelector(".modal").style.justifyContent = "center";
         document.querySelector(".spectators-content").style.height = "80vh";
         document.querySelector(".spectators-sms").style.display = "none";
     }, 10000);
     
+    // Processant dades rebudes //! 2s
     setTimeout(() => {
         document.querySelector(".modal-content-bottom-row h3").innerText = titles[1];
     }, 12000);
 
+    // Compte enrere //! 3s (3, 2, 1...)
     setTimeout(() => {
         voting.pause();
         if (stillPlayingModal) showVotes.play();
@@ -318,19 +322,18 @@ function hint_spectators() {
         contador.style.fontSize = "7vw";
         contador.innerText = "3";
     }, 13000);
-
     setTimeout(() => {
         document.querySelector(".modal-cont");
         contador.style.color = "#eebbc3";
         contador.innerText = "2";
     }, 14000);
-
     setTimeout(() => {
         contador = document.querySelector(".modal-cont");
         contador.style.color = "#fabf5b";
         contador.innerText = "1";
     }, 15000);
 
+    // Mostrar la gràfica!!
     setTimeout(() => {
         contador.innerText = null;
         var chart = new ApexCharts(document.querySelector("#spectators-chart"), options);
