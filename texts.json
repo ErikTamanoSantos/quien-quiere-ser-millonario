@@ -20,7 +20,12 @@
             "game_over": "Game over!",
             "go_start": "GO TO START PAGE",
             "level_completed": "Level completed!",
-            "file": "english"
+            "file": "english",
+            "modals": {
+                "titles": "The spectators are voting...|Processing votes...",
+                "tlf_sms_title": "Which one do you think is correct?",
+                "tlf_sms_texts": "Make a call to +34 937 89 06 XX to vote for an answer|Or you could also send an SMS with the answer in capital letters to 25315"
+            }
         },
         "win": {
             "win_bad_ending": "You'll have no prize being a cheater!",
@@ -36,7 +41,9 @@
             "save_msg": "Data saved!"
         },
         "lose": {
-            "you_failed": "¡You've failed!",
+            "lose_bad_ending": "You can't lose if you haven't even tried!",
+            "you_failed": "You've failed!",
+            "time_out": "You ran out of time!",
             "you_know": "Do you know what it means..?",
             "lose_next_button": "I don't know...",
             "you_lose": "You've lost the game!",
@@ -70,7 +77,12 @@
             "game_over": "¡Fin del juego!",
             "go_start": "VOLVER AL INICIO",
             "level_completed": "¡Nivel completado!",
-            "file": "spanish"
+            "file": "spanish",
+            "modals": {
+                "titles": "El público está votando...|Procesando votos...",
+                "tlf_sms_title": "Vota cual crees que es la respuesta correcta",
+                "tlf_sms_texts": "Llama al +34 937 89 06 XX para votar por una respuesta|O bien envia la respuesta en mayúsculas al 25315"
+            }
         },
         "win": {
             "win_bad_ending": "¡No conseguirás nada haciendo trampas!",
@@ -86,7 +98,9 @@
             "save_msg": "Datos guardados!"
         },
         "lose": {
+            "lose_bad_ending": "¡No puedes perder sin haber jugado!",
             "you_failed": "¡Has fallado!",
+            "time_out": "¡Te has quedado sin tiempo!",
             "you_know": "¿Sabes qué significa eso...?",
             "lose_next_button": "Ni idea...",
             "you_lose": "¡Has perdido el juego!",
@@ -120,7 +134,12 @@
             "game_over": "Fi del joc!",
             "go_start": "TORNAR A L'INICI",
             "level_completed": "Nivell Completat!",
-            "file": "catalan"
+            "file": "catalan",
+            "modals": {
+                "titles": "El públic està votant...|Processant vots...",
+                "tlf_sms_title": "Vota quina creus que és la resposta correcta",
+                "tlf_sms_texts": "Truca al +34 937 89 06 XX per votar per una resposta|O bé envia la resposta en majúscules al 25315"
+            }
         },
         "win": {
             "win_bad_ending": "No t'emportaràs cap premi fent trampes!",
@@ -136,7 +155,9 @@
             "save_msg": "Dades guardades!"
         },
         "lose": {
+            "lose_bad_ending": "No pots perdre sense jugar!",
             "you_failed": "Has fallat!",
+            "time_out": "T'has quedat sense temps!",
             "you_know": "Saps què vol dir...?",
             "lose_next_button": "Ni idea...",
             "you_lose": "Has perdut!",

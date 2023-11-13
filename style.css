@@ -12,10 +12,15 @@ h3 { font-family: 'Inter', sans-serif; }
     display: none !important;
 }
 
+input[type="submit"] {
+    cursor: pointer;
+}
+
 /*index.php*/
 :root {
     --rosita: #eebbc3;
     --rosita-hover: #e69aa6;
+    --rosita-disabled: #bd8080;
     --azul-claro: #d4d8f0;
     --azul: #b8c1ec;
     --gris: #232946;
@@ -24,10 +29,21 @@ h3 { font-family: 'Inter', sans-serif; }
     --amarillo-oscuro: #fabf5b;
     --verde: #4eb653;
     --rojo: #f16061;
+    --rojo-filter: invert(47%) sepia(57%) saturate(656%) hue-rotate(311deg) brightness(96%) contrast(95%);
+    --gris-filter: invert(57%) sepia(1%) saturate(0%) hue-rotate(166deg) brightness(89%) contrast(83%);
 }
 
 * {
     margin: 0px;
+}
+
+#easter-egg {
+    z-index: 4000;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #idioma {
@@ -39,11 +55,13 @@ h3 { font-family: 'Inter', sans-serif; }
     border: 2px solid var(--gris-oscuro);
     border-radius: 7px;
     transition: background .3s;
+    cursor: pointer;
 }
 
 #idioma:hover {
     background: var(--azul-claro);
     transition: background .3s;
+    cursor: pointer;
 }
 
 #idioma > option {
@@ -329,9 +347,25 @@ section.how-to-play > h1 {
 
 /* game.php */
 
+.comodines button:disabled {
+    cursor: not-allowed;
+}
+
+.comodines button:disabled:hover {
+    background-color: transparent;
+}
+
+.comodines button:disabled svg {
+    filter: var(--rojo-filter);
+}
+
+.comodines .add-time.unavailable {
+    filter: var(--gris-filter)!important;
+}
 .hidden-question {
     display: none !important
 }
+
 
 .question-container {
     height: 100vh;
@@ -344,6 +378,38 @@ section.how-to-play > h1 {
     justify-content: end;
 }
 
+.question-container img {
+    max-height: 350px;
+    height: 350px;
+}
+
+.question-inner-container {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.timer {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.timer-tag {
+    font-family: 'Inter', sans-serif;
+}
+
+.question-timer {
+    font-weight: 300;
+    font-family: 'clock';
+    font-size: 75px;
+}
+
 .question-header {
     display: flex;
     width: 100%;
@@ -351,6 +417,7 @@ section.how-to-play > h1 {
 }
 
 .question-container h1 {
+    padding: 10px 20px;
     background-color: var(--amarillo);
     border: solid 4px var(--gris-oscuro);
     border-radius: 16px;
@@ -389,6 +456,18 @@ section.how-to-play > h1 {
     background-color: var(--rosita-hover);
 }
 
+.answer-container button:disabled {
+    height: 80px;
+    margin: 5px;
+    background-color: var(--rosita-disabled);
+    color: var(--gris);
+    border: solid 4px var(--gris-oscuro);
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    transition: background-color .3s linear;
+    cursor: not-allowed !important;
+}
+
 .answer-container button:nth-child(1) {
     border-radius: 16px 0 0 0 ;
 }
@@ -406,19 +485,11 @@ section.how-to-play > h1 {
 }
 
 .correct-button:disabled {
-    background-color: var(--verde);
+    background-color: var(--verde) !important;
 }
 
 .wrong-button.clicked {
-    background-color: var(--rojo);
-}
-
-.correct-button:disabled:hover {
-    background-color: var(--verde);
-}
-
-.wrong-button.clicked:hover {
-    background-color: var(--rojo);
+    background-color: var(--rojo) !important;
 }
 
 .message-container {
@@ -523,10 +594,41 @@ section.how-to-play > h1 {
 }
 
 .game-info > #reloj {
+    width: 100px;
     text-align: center;
     color: var(--azul-claro);
     font-family: "clock";
     font-size: 60px;
+}
+
+.comodines { 
+    width: 200px; 
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.comodines button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.hint-disabled {
+    background-color: var(--rojo);
+    cursor: not-allowed;
+}
+
+.comodines button:hover {
+    background-color: var(--gris);
 }
 
 /* ranking .php */
@@ -538,6 +640,11 @@ section.how-to-play > h1 {
     justify-content: center;
     align-items: center;
     background-color: var(--azul);
+}
+
+#ranking-div h1 {
+    margin-bottom: 40px;
+    font-size: 100px;
 }
 
 #ranking-div table {
@@ -590,11 +697,31 @@ section.how-to-play > h1 {
 
 
 /** lose.php */
+
+#bad-lose {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--rojo);
+    height: 35vh;
+    padding: 30px;
+}
+
 .main-lose {
+    animation-name: win-transition-animation;
+    animation-duration: 2s;
+    animation-iteration-count: initial;
+    background-color: var(--amarillo);
+    height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: var(--gris-oscuro);
+    text-align: center;
+
 }
 
 .first-lose {
@@ -668,4 +795,157 @@ section.how-to-play > h1 {
 
 .disabled-script h2 {
     font-family: 'inter', sans-serif;
+}
+
+.spectators-content { transition: all .3s; }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, .3);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: all .3s;
+}
+
+.modal-content {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #121629;
+    border: 3px solid black;
+    border-radius: 15px;
+    padding: 20px 20px;
+    width: 100%;
+}
+
+.modal-content-top-row {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.modal-content-bottom-row {
+    display: grid;
+    place-content: center;
+    margin-top: 30px;
+}
+
+.modal-content:first-child {
+    margin-top: 4vh;
+    height: 60vh;
+    width: 80vw;
+}
+
+.modal-content:last-child {
+    margin-bottom: 4vh;
+    height: 10vh;
+    width: 80vw;
+}
+
+.modal-content-bottom-row h3 {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    font-size: 2vw;
+    color: var(--azul-claro);
+    font-family: 'Inter';
+}
+
+.apexcharts-menu-icon { display: none; }
+
+.close-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.close-modal svg {
+    color: white;
+    width: 45px;
+    height: 45px;
+    transition: color .3s linear;
+}
+
+.close-modal:hover svg {
+    color: var(--rojo);
+    transition: color .3s linear;
+}
+
+.modal-content-bottom-row {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.loader {
+    /* the colors */
+    --c1: var(--rojo);
+    --c2: var(--amarillo);
+    --c3: var(--azul);
+    --c4: #554236;
+    /**/
+
+    width: 180px; /* control the size */
+    aspect-ratio: 8/5;
+    --_g: no-repeat radial-gradient(#000 68%,#0000 71%);
+    -webkit-mask: var(--_g),var(--_g),var(--_g);
+    -webkit-mask-size: 25% 40%;
+    background: 
+        conic-gradient(var(--c1) 50%,var(--c2) 0) no-repeat,
+        conic-gradient(var(--c3) 50%,var(--c4) 0) no-repeat;
+    background-size: 200% 50%;
+    animation: 
+        back 4s infinite steps(1),
+        load 2s infinite;
+}
+
+@keyframes load {
+    0%    {-webkit-mask-position: 0% 0%  ,50% 0%  ,100% 0%  }
+    16.67%{-webkit-mask-position: 0% 100%,50% 0%  ,100% 0%  }
+    33.33%{-webkit-mask-position: 0% 100%,50% 100%,100% 0%  }
+    50%   {-webkit-mask-position: 0% 100%,50% 100%,100% 100%}
+    66.67%{-webkit-mask-position: 0% 0%  ,50% 100%,100% 100%}
+    83.33%{-webkit-mask-position: 0% 0%  ,50% 0%  ,100% 100%}
+    100%  {-webkit-mask-position: 0% 0%  ,50% 0%  ,100% 0%  }
+}
+@keyframes back {
+    0%,
+    100%{background-position: 0%   0%,0%   100%}
+    25% {background-position: 100% 0%,0%   100%}
+    50% {background-position: 100% 0%,100% 100%}
+    75% {background-position: 0%   0%,100% 100%}
+}
+
+.spectators-sms {
+    color: white;
+}
+
+.modal-cont { font-family: 'Inter'; }
+
+.spectators-sms h3 { font-size: 25px; }
+
+.spectators-sms p {
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+    transition: opacity .3s;
+    font-size: 18px;
+}
+
+tspan { 
+    color: white!important; 
+    font-size: 24px;
 }

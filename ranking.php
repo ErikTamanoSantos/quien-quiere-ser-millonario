@@ -52,6 +52,7 @@
         function render_table($data) {
             echo "
                 <div id='ranking-div'>
+                    <h1 id='ranking-title'>Ranking</h1>
                     <table id='ranking-table' cellspacing='0'>
                         <thead>
                             <tr>
