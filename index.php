@@ -25,6 +25,7 @@
         }
         
     ?>
+    <div class="d-none" id="easter-egg"></div>
     <main class="main-slider d-none">
         <section id="index-header" class="slider">
             <nav id="index-nav">
@@ -39,7 +40,7 @@
                 </form>
             </nav>
             <section id="header-title">
-                <?php echo '<h1>'. $_SESSION["jsonTexts"]["index"]["title"] .'</h1>' ?>
+                <?php echo '<h1 id="title">'. $_SESSION["jsonTexts"]["index"]["title"] .'</h1>' ?>
                 <div id="title-buttons">
                     <?php echo '<a href="game.php">'. $_SESSION["jsonTexts"]["index"]["play_button"] .'</a>'; ?>
                     <a href="ranking.php">Ranking</a>

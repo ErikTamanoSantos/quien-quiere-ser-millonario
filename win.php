@@ -13,6 +13,7 @@
         if (!isset($_POST["game_won"])) {
             echo "<section id='bad-win'><h1>". $_SESSION["jsonTexts"]["win"]["win_bad_ending"] ."</h1>";
             echo '<span class="tornar"><a href="http://localhost:8080">'. $_SESSION["jsonTexts"]["win"]["go_start"] .'</a><span>👈</span></span><section>';
+            header('HTTP/1.0 403 Forbidden');
         } elseif (isset($_POST["player_name"])) {
             save_score();
             echo '<section class="win-after">

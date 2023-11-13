@@ -10,7 +10,11 @@
     <main class="main-lose d-none">
         <?php 
         session_start();
-        if (isset($_POST["player_name"])) {
+        if (!isset($_POST["game_lost"])) {
+            echo "<section id='bad-lose'><h1>". $_SESSION["jsonTexts"]["lose"]["lose_bad_ending"] ."</h1>";
+            echo '<span class="tornar"><a href="http://localhost:8080">'. $_SESSION["jsonTexts"]["lose"]["lose_first_text"] .'</a><span>👈</span></span><section>';
+            header('HTTP/1.0 403 Forbidden');
+        } elseif (isset($_POST["player_name"])) {
             save_score();
             echo '<section class="second-lose" style="display: block">
                 <section class="fixed-lose">
@@ -23,7 +27,13 @@
             </section>';
         } else {
             echo '<section class="first-lose">
-                <h1>'. $_SESSION["jsonTexts"]["lose"]["you_failed"] .'</h1>
+                <h1>';
+                if ($_POST["reason"] == "Timeout") {
+                    echo $_SESSION["jsonTexts"]["lose"]["time_out"] ;
+                } else {
+                    echo $_SESSION["jsonTexts"]["lose"]["you_failed"] ;
+                }
+                echo '</h1>
                 <h4>'. $_SESSION["jsonTexts"]["lose"]["you_know"] .'</h4>
                 <button>'. $_SESSION["jsonTexts"]["lose"]["lose_next_button"] .'</button>
             </section>
